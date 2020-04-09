@@ -10,6 +10,8 @@ gem 'faraday'
 gem 'figaro'
 gem 'will_paginate'
 gem 'travis'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
