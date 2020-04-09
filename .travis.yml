@@ -3,5 +3,6 @@ language: ruby
 services:
   - postgresql
 script:
+  - bundle
   - bundle exec rake db:{create,migrate}
   - bundle exec rspec

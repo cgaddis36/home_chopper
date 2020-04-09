@@ -1,1 +1,8 @@
 <h1>Let's Get Choppin'</h1>
+<%# in app/views/layouts/_navbar.html.erb %>
+<% if current_user %>
+  Hello, <%= current_user.name %><br>
+  <%= link_to "Logout", "/logout", method: :delete%> 
+<% else %>
+  <%= link_to "Login with Google", google_oauth2_path%> 
+<% end %>
