@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-# has_many :ingredients
+has_many :ingredients
 validates_presence_of :name
 validates_presence_of :email
 
