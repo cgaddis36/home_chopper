@@ -24,7 +24,9 @@ ul.topnav {
   background-color: #333;
 }
 
-ul.topnav li {float: left;}
+ul.topnav li {float: left;
+              font-family: Impact, Charcoal, sans-serif;
+}
 
 ul.topnav li a {
   display: block;
