@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#create' 
   delete '/logout', to: 'sessions#destroy'
 
+  namespace :user do
+    get '/dashboard', to: 'dashboard#index'
+  end
+
   # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end
