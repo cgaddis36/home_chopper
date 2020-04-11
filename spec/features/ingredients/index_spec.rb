@@ -51,9 +51,9 @@ describe "ingredients index" do
 
     visit "/users/#{@bob.id}/ingredients"
 
-    fill_in "Name", with: " "
+    fill_in "Name", with: ""
 
-     click_on "Add Item To Pantry"
+    click_on "Add Item To Pantry"
 
     expect(current_path).to eq("/users/#{@bob.id}/ingredients")
 
@@ -69,10 +69,24 @@ describe "ingredients index" do
     end
   end
 
+  it "can delete a food from the pantry" do
 
+    visit "/users/#{@bob.id}/ingredients"
 
+    within("#ingredient-#{@squid.id}") do
+      click_on "Remove From Pantry"
+    end
 
+    expect(current_path).to eq("/users/#{@bob.id}/ingredients")
+    expect(page).to have_content("Ingredient Removed From Pantry")
 
-
-
+    within('.ingredients') do
+      expect(page).to have_content(@chocolate.name)
+      expect(page).to_not have_content(@squid.name)
+      expect(page).to have_content(@blueberries.name)
+      expect(page).to have_content(@cinnamon.name)
+      expect(page).to have_content(@eggs.name)
+      expect(page).to have_content(@toast.name)
+    end
+  end
 end
