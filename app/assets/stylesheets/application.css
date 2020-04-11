@@ -14,14 +14,30 @@
  *= require_self
  */
 
+ h1 {background-color: black;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: white;
+    }
+
 body {margin: 0;
       background-color: lightgrey;
       }
 
 #message {
   text-align: center;
+  width: 250px;
+  background-color: cyan;
+  position: absolute;
+  padding: 4px 2px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
+#item_add {
+  text-align: left;
+  background-color: darkred;
+  position: absolute;
+  padding: 4px 2px;
+            }
 
 ul.topnav {
   list-style-type: none;
