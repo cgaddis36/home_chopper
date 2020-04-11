@@ -1,0 +1,19 @@
+<h1>My Pantry</h1>
+
+  <% if @ingredients %>
+    <p class='ingredients'>
+      <% @ingredients.each do |food| %>
+        <%= food.name %>
+    <% end %></p>
+  <% end %>
+
+  <section id="item_add">
+    <h3>Add An Item To Your Pantry</h3>
+
+    <%= form_tag "/users/#{current_user.id}/ingredients", method: :post do %>
+       <%= label_tag :name %>
+       <%= text_field_tag :name%>
+
+       <%= submit_tag 'Add Item To Pantry' %>
+    <% end %>
+  </section>
