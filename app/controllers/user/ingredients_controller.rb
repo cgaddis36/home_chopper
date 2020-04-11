@@ -1,4 +1,4 @@
-class User::IngredientsController < ApplicationController
+class User::IngredientsController < User::BaseController
   def index
     @ingredients = User.find(params[:user_id]).ingredients
   end
