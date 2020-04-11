@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  namespace :user do
+  namespace :users do
     get '/:user_id/ingredients', to: 'ingredients#index'
     post '/:user_id/ingredients', to: 'ingredients#create'
-    delete ':user_id/ingredients/:ingredient_id', to: 'ingredients#destroy'
+    delete '/:user_id/ingredients/:ingredient_id', to: 'ingredients#destroy'
     get '/dashboard', to: 'dashboard#index'
   end
 

@@ -6,14 +6,14 @@ RSpec.describe 'as a user' do
 
       user = User.create(name: "Raymond")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      
-      visit '/user/dashboard'
+
+      visit '/users/dashboard'
 
       expect(page).to have_button("Start Game")
-    end  
+    end
 
     it "can not visit dashboard if not logged in" do
-      visit '/user/dashboard'
+      visit '/users/dashboard'
 
       expect(page).to have_content("The page you were looking for doesn't exist")
     end
