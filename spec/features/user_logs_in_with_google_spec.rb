@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe 'user logs in' do 
-    scenario 'user logs in useer google oauth2' do
-        stub_omniauth 
-        visit '/'
-        
-        click_link 'Login with Google'
+RSpec.describe 'user logs in' do
+  scenario 'user logs in useer google oauth2' do
+    stub_omniauth
+    visit '/'
 
-        expect(page).to have_content("Jack Black")
-        expect(page).to have_link("Logout")
-    end 
-end 
+    click_link 'Login with Google'
+
+    expect(page).to have_content("Jack Black")
+    expect(page).to have_link("Logout")
+  end
+end
 
 def stub_omniauth
   OmniAuth.config.test_mode = true
