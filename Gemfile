@@ -8,6 +8,7 @@ gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pry'
+gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 gem 'rubocop', require: false
 gem 'travis'
 gem 'will_paginate'
