@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     namespace :users do
       get '/:user_id/ingredients', to: 'ingredients#index'
       post '/:user_id/ingredients', to: 'ingredients#create'
+      delete ':user_id/ingredients/:ingredient_id', to: 'ingredients#destroy'
     end
   # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end
