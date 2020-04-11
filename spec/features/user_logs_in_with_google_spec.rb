@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'user logs in' do
+RSpec.describe 'user logs in', type: :feature do
   scenario 'user logs in useer google oauth2' do
-    stub_omniauth
-    visit '/'
+      stub_omniauth
+      visit '/'
 
-    click_link 'Login with Google'
+      click_link 'Login with Google'
 
-    expect(page).to have_content("Jack Black")
-    expect(page).to have_link("Logout")
-  end
+      expect(page).to have_content("Jack Black")
+      expect(page).to have_link("Logout")
+  end 
 end
 
 def stub_omniauth
