@@ -39,6 +39,14 @@ body {margin: 0;
   padding: 4px 2px;
             }
 
+  .ingredients {
+     position: absolute;
+     right: 150px;
+     width: 200px;
+     background-color: cyan;
+     padding: 4px 2px;
+}
+
 ul.topnav {
   list-style-type: none;
   margin: 0;
