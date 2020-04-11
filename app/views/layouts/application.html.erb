@@ -16,7 +16,7 @@
       <li><a href="#friends">Friends</a></li>
       <% if current_user %>
         <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
-        <li class="right"><%= link_to "Pantry", "/users/#{current_user.id}/ingredients", method: :get%></li>
+        <li class="right"><%= link_to "Pantry", "/user/#{current_user.id}/ingredients", method: :get%></li>
       <% else %>
         <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
       <% end %>
