@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   has_many :ingredients
+  has_many :challenges
   validates_presence_of :name
   validates_presence_of :email
+
+has_many :challenge_ingredients, through: :challenges
 
   def self.update_or_create(auth_info)
     user = User.find_by(uid: auth_info[:uid]) || User.new
