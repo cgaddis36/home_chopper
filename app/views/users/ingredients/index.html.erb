@@ -3,7 +3,11 @@
   <% if @ingredients %>
     <p class='ingredients'>
       <% @ingredients.each do |food| %>
-        <%= food.name %>
+        <section id= 'ingredient-<%=food.id%>'>
+          <%= food.name %>
+          <%= button_to "Remove From Pantry", "/users/#{current_user.id}/ingredients/#{food.id}", method: :delete %>
+         </section>
+
     <% end %></p>
   <% end %>
 
