@@ -14,7 +14,38 @@
  *= require_self
  */
 
-body {margin: 0;}
+ h1 {background-color: black;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: white;
+    }
+
+body {margin: 0;
+      background-color: lightgrey;
+      }
+
+#message {
+  text-align: center;
+  width: 250px;
+  background-color: cyan;
+  position: absolute;
+  padding: 4px 2px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#item_add {
+  text-align: left;
+  background-color: darkred;
+  position: absolute;
+  padding: 4px 2px;
+            }
+
+  .ingredients {
+     position: absolute;
+     right: 150px;
+     width: 200px;
+     background-color: cyan;
+     padding: 4px 2px;
+}
 
 ul.topnav {
   list-style-type: none;
@@ -43,6 +74,6 @@ ul.topnav li a.active {background-color: rgb(23, 223, 227);}
 ul.topnav li.right {float: right;}
 
 @media screen and (max-width: 600px) {
-  ul.topnav li.right, 
+  ul.topnav li.right,
   ul.topnav li {float: none;}
 }
