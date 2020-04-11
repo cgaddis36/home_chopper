@@ -11,13 +11,13 @@ class Users::IngredientsController < Users::BaseController
     else
       flash[:error] = "Name Can Not Be Blank"
     end
-    redirect_to "/user/#{user.id}/ingredients"
+    redirect_to "/users/#{user.id}/ingredients"
   end
 
   def destroy
     ingredient = Ingredient.find(params[:ingredient_id])
     flash[:success] = "Ingredient Removed From Pantry" if ingredient.destroy
-    redirect_to "/user/#{current_user.id}/ingredients"
+    redirect_to "/users/#{current_user.id}/ingredients"
   end
 
   private
