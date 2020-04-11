@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    if user = User.update_or_create(request.env["omniauth.auth"])
+    if (user = User.update_or_create(request.env["omniauth.auth"]))
       session[:user_id] = user.id
     end
     redirect_to "/"
@@ -11,4 +11,4 @@ class SessionsController < ApplicationController
     flash[:success] = "You are now logged out."
     redirect_to "/"
   end
-end 
+end

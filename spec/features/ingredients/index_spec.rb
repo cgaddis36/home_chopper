@@ -13,7 +13,6 @@ describe "ingredients index" do
   end
 
   it "lists all user ingredients" do
-
     visit "/users/#{@bob.id}/ingredients"
 
     within('.ingredients') do
@@ -27,12 +26,11 @@ describe "ingredients index" do
   end
 
   it "can add a food to the pantry " do
-
     visit "/users/#{@bob.id}/ingredients"
 
     fill_in "Name", with: "Tomato Sauce"
 
-     click_on "Add Item To Pantry"
+    click_on "Add Item To Pantry"
 
     expect(current_path).to eq("/users/#{@bob.id}/ingredients")
 
@@ -48,7 +46,6 @@ describe "ingredients index" do
   end
 
   it "cannot add a food to the pantry without a name" do
-
     visit "/users/#{@bob.id}/ingredients"
 
     fill_in "Name", with: ""
@@ -70,7 +67,6 @@ describe "ingredients index" do
   end
 
   it "can delete a food from the pantry" do
-
     visit "/users/#{@bob.id}/ingredients"
 
     within("#ingredient-#{@squid.id}") do
