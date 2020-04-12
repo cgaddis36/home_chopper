@@ -21,14 +21,7 @@
         <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
       <% end %>
     </ul>
-
-    <center>
-      <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: name %>
-          <% end -%>
-    </center>
     
-    <center>
       <center>
    <% flash.each do |name, msg| -%>
          <%= content_tag :div, msg, class: name %>
