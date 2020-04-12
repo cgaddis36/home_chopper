@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     post '/:user_id/ingredients', to: 'ingredients#create'
     delete '/:user_id/ingredients/:ingredient_id', to: 'ingredients#destroy'
     get '/:user_id/dashboard', to: 'dashboard#index'
+    get '/:user_id/challenges/new', to: 'challenges#new'
+    post '/:user_id/challenges', to: 'challenges#create'
+
   end
 
 
