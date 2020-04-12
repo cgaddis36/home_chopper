@@ -5,11 +5,10 @@ class Users::ChallengesController < Users::BaseController
   end
 
   def create
-    user = User.find(params[:user_id])
-    challenge = user.challenges.new(challenge_params)
+    challenge = current_user.challenges.new(challenge_params)
     if challenge.save
       flash[:success] = "New Game Started!"
-      redirect_to "/users/#{user.id}/challenges/#{challenge.id}"
+      redirect_to "/users/#{current_user.id}/challenges/#{challenge.id}"
     else
       flash[:error] = challenge.errors.full_messages.to_sentence
       render :new
@@ -19,6 +18,26 @@ class Users::ChallengesController < Users::BaseController
       @challenge = Challenge.find(params[:challenge_id])
     end
   end
+
+def update
+  @challenge = Challenge.find(params[:challenge_id])
+    if params[:game_event] == "start"
+      @challenge.start_game
+    elsif params[:game_event] == "pause"
+      @challenge.pause_game
+    elsif params[:game_event] == "cancel"
+      @challenge.cancel_game
+    elsif params[:game_event] == "game_over"
+      @challenge.finalize_game
+    else
+    end
+    redirect_to "/users/#{current_user.id}/challenges/#{@challenge.id}"
+  end
+
+
+
+
+
 
   private
 
