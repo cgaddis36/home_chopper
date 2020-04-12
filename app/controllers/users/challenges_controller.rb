@@ -5,7 +5,16 @@ class Users::ChallengesController < Users::BaseController
   end
 
   def create
-    binding.pry
+    user = User.find(params[:user_id])
+    challenge = user.challenges.new(challenge_params)
+    if challenge.save
+      flash[:success] = "New Game Started!"
+      redirect_to "/users/#{user.id}/challenges/#{challenge.id}"
+    else
+      flash[:error] = challenge.errors.full_messages.to_sentence
+      render :new
+    end
+
   end
 
   private
