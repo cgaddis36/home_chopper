@@ -35,6 +35,8 @@ body {margin: 0;
 #item_add {
   text-align: left;
   background-color: darkred;
+  left: 25px;
+  width: 250px;
   position: absolute;
   padding: 4px 2px;
             }
@@ -45,7 +47,7 @@ body {margin: 0;
      width: 200px;
      background-color: cyan;
      padding: 4px 2px;
-}
+                }
 
 ul.topnav {
   list-style-type: none;
