@@ -16,7 +16,7 @@
 
  h1 {background-color: black;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    color: white;
+    color: cyan;
     }
 
 body {margin: 0;
@@ -34,20 +34,28 @@ body {margin: 0;
 
 #item_add {
   text-align: left;
-  background-color: darkred;
-  left: 25px;
-  width: 250px;
+  background-color: indigo;
+  color: white;
   position: absolute;
-  padding: 4px 2px;
+  padding: 4px 5px;
+  left: 50px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+/* resize: vertical; */
             }
 
   .ingredients {
      position: absolute;
+     color: indigo;
      right: 150px;
      width: 200px;
      background-color: cyan;
      padding: 4px 2px;
-                }
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+}
 
 ul.topnav {
   list-style-type: none;
