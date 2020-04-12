@@ -16,5 +16,16 @@ RSpec.describe 'as a user' do
 
       expect(page).to_not have_content("Dashboard")
     end
+
+    it "can use a link to the ingredients index from the dashboard" do
+      bob = User.create(name: "Bob", email: "bob@sample.com", google_token: "12345", role: 0)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(bob)
+
+      visit "/"
+
+      click_on "Pantry"
+
+      expect(current_path).to eq("/users/#{bob.id}/ingredients")
+    end
   end
 end
