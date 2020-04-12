@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get '/:user_id/dashboard', to: 'dashboard#index'
     get '/:user_id/challenges/new', to: 'challenges#new'
     post '/:user_id/challenges', to: 'challenges#create'
+    get '/:user_id/challenges/:challenge_id', to: 'challenges#show'
 
   end
 
