@@ -21,16 +21,11 @@ describe 'User ' do
 
     fill_in 'time_limit', with: '20'
     fill_in 'basket_size', with: '3'
-    fill_in 'meal_type', with: 'Dinner'
+    fill_in 'meal_type', with: 'dinner'
     click_on "Start New Game"
 
     game = Challenge.last
-    
+
     expect(game.game_status).to eq("before")
-    # expect(current_path).to eq.("/users/#{@bob.id}/challenges/#{game.id}")
-    #
-    # click_on "Let's Get Choppin'!"
-    #
-    # expect(game.game_status).to eq("playing")
   end
 end

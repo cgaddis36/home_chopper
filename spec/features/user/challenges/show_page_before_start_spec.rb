@@ -9,11 +9,11 @@ describe 'User ' do
     @cinnamon = @bob.ingredients.create(name: "Cinnamon")
     @eggs = @bob.ingredients.create(name: "Eggs")
     @toast = @bob.ingredients.create(name: "Toast")
-    @game = @bob.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "Dinner")
+    @game = @bob.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "dinner")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
 
-  it 'can create a new game' do
+  it 'can start a game' do
 
     visit "/users/#{@bob.id}/challenges/#{@game.id}"
 
@@ -21,12 +21,14 @@ describe 'User ' do
 
     expect(@game.game_status).to eq("before")
 
-    click_on "Let's Get Choppin'"
+    click_on "Let's Get Choppin'!"
 
-    expect(current_path).to eq.("/users/#{@bob.id}/challenges/#{game.id}")
+    @game.reload
 
-    expect(game.game_status).to eq("playing")
-    
-    expect(page).to have_content("Game Clock")
+    expect(@game.game_status).to eq("playing")
+    expect(@game.meal_type).to eq("dinner")
+    expect(@game.basket_size).to eq(3)
+
+    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
   end
 end
