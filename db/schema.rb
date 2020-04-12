@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_214737) do
   create_table "challenges", force: :cascade do |t|
     t.integer "time_limit"
     t.integer "basket_size"
-    t.integer "meal_type"
+    t.integer "meal_type", default: 0
     t.integer "game_status", default: 0
     t.bigint "user_id"
     t.datetime "created_at", null: false
