@@ -15,11 +15,14 @@ class Users::ChallengesController < Users::BaseController
       render :new
     end
 
+    def show
+      @challenge = Challenge.find(params[:challenge_id])
+    end
   end
 
   private
 
   def challenge_params
-    params.permit(:time_limit, :basket_size, :meal_type)
+    params.permit(:time_limit, :basket_size, :meal_type, :game_status)
   end
 end
