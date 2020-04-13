@@ -9,6 +9,14 @@ class Challenge < ApplicationRecord
   has_many :challenge_ingredients
   has_many :ingredients, through: :challenge_ingredients
 
+  def self.three_ingredients
+    where('basket_size = 3').order(created_at: :DESC)
+  end
+
+  def self.five_ingredients
+    where('basket_size = 5').order(created_at: :DESC)
+  end
+
   def start_game
     self.update_column("game_status", "playing")
   end
@@ -34,5 +42,9 @@ class Challenge < ApplicationRecord
     contents.each do |ingredient|
       ChallengeIngredient.create(challenge_id: self.id, ingredient_id: ingredient.id)
     end
+  end
+
+  def which_ingredients
+    self.ingredients
   end
 end
