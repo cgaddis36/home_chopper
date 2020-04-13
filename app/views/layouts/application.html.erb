@@ -21,8 +21,7 @@
         <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
       <% end %>
     </ul>
-</head> 
-
+</head>
 
 <h3>Countdown Clock</h3> 
 <div id="clockdiv"> 
@@ -42,67 +41,59 @@
 
 <p id="demo"></p> 
 
-<section class="num">
+<div id="num-field">
     <p>Enter Time Limit</p>
+
     <label for="num">Mintues:</label>
     <input id="inputNumber" type="number">
-    <button id="submitButton" type="submit">submit</button>
-</section>
+    <button onclick="myFunction() " id="submitButton" type="submit">submit</button>
+
+</div>
+
+
+
 <script>
+  function myFunction() {
+    document.querySelector("#num-field").setAttribute("id", "hidden"); 
+  }
+</script>
 
-var submitButton = document.querySelector("#submitButton")
 
-submitButton.addEventListener('click', () => {
 
-var num = document.querySelector("#inputNumber").value
-var personInput = (Number(num)*60) * 1000
+<script>
+  var submitButton = document.querySelector("#submitButton")
 
-var deadline = new Date(Date.now() + personInput).getTime();
-var x = setInterval(function() { 
+  submitButton.addEventListener('click', () => {
+
+
+
+  var num = document.querySelector("#inputNumber").value
+  var personInput = (Number(num)*60) * 1000
+
+  var deadline = new Date(Date.now() + personInput).getTime();
+  var x = setInterval(function() { 
+    
+  var now = new Date().getTime(); 
+
+  var t = deadline - now; 
   
-var now = new Date().getTime(); 
+  var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+  var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+  var seconds = Math.floor((t % (1000 * 60)) / 1000); 
 
-var t = deadline - now; 
- 
-var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-var seconds = Math.floor((t % (1000 * 60)) / 1000); 
-
-document.getElementById("hour").innerHTML =hours; 
-document.getElementById("minute").innerHTML = minutes;  
-document.getElementById("second").innerHTML =seconds;  
-if (t < 0) { 
-        clearInterval(x); 
-        
-        document.getElementById("demo").innerHTML = "TIME'S UP";  
-        document.getElementById("hour").innerHTML ='0'; 
-        document.getElementById("minute").innerHTML ='0' ;  
-        document.getElementById("second").innerHTML = '0'; } 
-}, 1000);
+  document.getElementById("hour").innerHTML =hours; 
+  document.getElementById("minute").innerHTML = minutes;  
+  document.getElementById("second").innerHTML =seconds;  
+  if (t < 0) { 
+    clearInterval(x); 
+          document.getElementById("demo").innerHTML = "TIME'S UP";  
+          document.getElementById("hour").innerHTML ='0'; 
+          document.getElementById("minute").innerHTML ='0' ;  
+          document.getElementById("second").innerHTML = '0'; } 
+  }, 1000);
 
 })
 </script>
-
-
-<p>Click "Try it". Wait 3 seconds. The page will alert "Hello".</p>
-<p>Click "Stop" to prevent the first function to execute.</p>
-<p>(You must click "Stop" before the 3 seconds are up.)</p>
-
-<button onclick="myVar = setTimeout(myFunction, 3000)">Try it</button>
-
-<button onclick="clearTimeout(myVar)">Stop it</button>
-
-<script>
-function myFunction() {
-  alert("This is an alert");
-}
-</script>
-
-
-
-
-
-
     <center>
       <center>
    <% flash.each do |name, msg| -%>

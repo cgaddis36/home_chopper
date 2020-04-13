@@ -23,14 +23,14 @@ body {margin: 0;
       background-color: lightgrey;
       }
 
-#message {
+/* #message {
   text-align: center;
   width: 250px;
   background-color: cyan;
   position: absolute;
   padding: 4px 2px;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-}
+} */
 
 #item_add {
   text-align: left;
@@ -114,3 +114,7 @@ h1{
   padding-top: 5px; 
     font-size: 16px; 
 } 
+
+#hidden {
+  display: none;
+}
