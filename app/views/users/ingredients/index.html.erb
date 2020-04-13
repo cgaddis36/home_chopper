@@ -1,14 +1,15 @@
 <h1>My Pantry</h1>
 
   <% if @ingredients %>
-    <p class='ingredients'>
+    <div class='ingredients'>
+      <h3>Ingredients</h3>
       <% @ingredients.each do |food| %>
         <section id= 'ingredient-<%=food.id%>'>
           <%= food.name %>
           <%= button_to "Remove From Pantry", "/users/#{current_user.id}/ingredients/#{food.id}", method: :delete %>
          </section>
 
-    <% end %></p>
+    <% end %></div>
   <% end %>
 
   <section id="item_add">
