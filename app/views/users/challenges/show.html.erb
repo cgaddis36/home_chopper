@@ -1,6 +1,7 @@
 <center>
   <h1>Solo Challenge!</h1>
 </center>
+
   <% if @challenge.game_status == "before" %>
 <center>
     <main class="game-info-main">
@@ -19,21 +20,23 @@
       <h2>You're making <%="#{@challenge.meal_type}"%>!</h2>
       <h1>Here are your mystery basket contents!</h1>
       <h2><% @challenge.basket_contents.each do |ingredient|%></h2>
-          <section id= "ingredient-<%= ingredient.id %>">
+          <section id=ingredient-"<%= ingredient.id %>">
             <h2><%= ingredient.name %></h2>
           </section>
           <% end %>
-      <h2><%= button_to "Pause Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "paused"}, method: :patch %></h2>
-      <h2><%= button_to "Cancel Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "cancelled"}, method: :patch %></h2>
+
+      <h2><%= button_to "Pause Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "pause"}, method: :patch %></h2>
+      <h2><%= button_to "Cancel Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "cancel"}, method: :patch %></h2>
+      <h2><%= button_to "I Finished Early!", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "done"}, method: :patch %></h2>
     </main>
   </center>
 
   <% elsif @challenge.game_status == "paused" %>
   <center>
-    <main class="game-play-main">
+    <main class="game-paused-main">
       <h2>You're making <%="#{@challenge.meal_type}"%>!</h2>
       <h2><%= button_to "Resume Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "playing"}, method: :patch %></h2>
-      <h2><%= button_to "Cancel Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "cancelled"}, method: :patch %></h2>
+      <h2><%= button_to "Cancel Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "cancel"}, method: :patch %></h2>
       <h1>Game Paused</h1>
     </main>
   </center>
@@ -41,14 +44,48 @@
 
   <% elsif @challenge.game_status == "cancelled" %>
   <center>
-      <main class="game-cancelled">
-        <h2>This game has been cancelled.</h2>
-        <h2>Click here for recipe ideas using your basket ingredients.</h2>
-        <h2>Click below to make a new game and try again </h2>
-        <h2><%= button_to "Start New Game", "/users/#{current_user.id}/challenges/new", method: :get %></h2>
-        <h2>Click below to head to your pantry.</h2>
-        <h2><%= button_to "Your Pantry", "/users/#{current_user.id}/ingredients", method: :get %></h2>
-      </main>
+    <main class="game-cancelled-main">
+      <h2>This game has been cancelled.</h2>
+      <h2>Click here for recipe ideas using your basket ingredients.</h2>
+      <h2><h2>Would you like to try again with a fresh basket?</h2></h2>
+      <h2><%= button_to "Start New Game", "/users/#{current_user.id}/challenges/new", method: :get %></h2><br>
+      <h2>Would you like to change your pantry ingredients?</h2>
+      <h2><%= button_to "Your Pantry", "/users/#{current_user.id}/ingredients", method: :get %></h2>
+    </main>
+  </center>
+
+  <% elsif @challenge.game_status == "done" %>
+  <center>
+    <main class="game-done-main">
+      <h2>Congratulations!!</h2>
+      <h2>You did it! Share photo of your creation below!</h2>
+      <h2><%= form_tag "/users/#{current_user.id}/challenges/update", params: {game_event: "save_photo"}, method: :patch do %>
+        <%= label_tag :photo %>
+        <%= text_field_tag :photo %>
+        <%= submit_tag "Save Photo"  %>
+      <% end %><br></h2>
+      <h2><%= button_to "Don't Save a Photo", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "no_photo"}, method: :patch %></h2><br>
+    </main>
+  </center>
+
+  <% elsif @challenge.game_status == "complete" %>
+  <center>
+    <main class="game-complete-main">
+      <h1>Here Are Your Game Results!!</h1>
+      <h2>You had a <%= @challenge.time_limit %> minute challenge.</h2>
+      <h2>You were challenged to make a <%= @challenge.meal_type %>.</h2>
+      <h2>Your Mystery Basket Ingredients Were:</h2>
+      <% @challenge.basket_contents.each do |ingredient|%>
+          <section id=final_ingredient-"<%= ingredient.id %>">
+            <h3><%= ingredient.name %></h3>
+          </section>
+          <% end %>
+      <h2><h2>Would you like play again with a fresh basket?</h2></h2>
+      <h2><%= button_to "Start New Game", "/users/#{current_user.id}/challenges/new", method: :get %></h2><br>
+      <h2>Would you like to change your pantry ingredients?</h2>
+      <h2><%= button_to "Your Pantry", "/users/#{current_user.id}/ingredients", method: :get %></h2>
+      <h2><%= button_to "Your Dashboard", "/users/#{current_user.id}/dashboard", method: :get %></h2>
+    </main>
   </center>
 
   <% else %>
