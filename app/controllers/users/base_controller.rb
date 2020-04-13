@@ -1,4 +1,4 @@
-class User::BaseController < ApplicationController
+class Users::BaseController < ApplicationController
   before_action :require_user
 
   def require_user
