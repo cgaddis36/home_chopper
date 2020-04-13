@@ -23,15 +23,21 @@ def update
   @challenge = Challenge.find(params[:challenge_id])
     if params[:game_event] == "start"
       @challenge.start_game
+    elsif params[:game_event] == "playing"
+      @challenge.start_game
     elsif params[:game_event] == "pause"
       @challenge.pause_game
     elsif params[:game_event] == "cancel"
       @challenge.cancel_game
-    elsif params[:game_event] == "game_over"
+    elsif params[:game_event] == "done"
       @challenge.finalize_game
-    else
+    elsif params[:game_event] == "save_photo"
+      #needs photo functionality added - active storage??
+      @challenge.game_complete
+    elsif params[:game_event] == "no_photo"
+      @challenge.game_complete
     end
-    redirect_to "/users/#{current_user.id}/challenges/#{@challenge.id}"
+     redirect_to "/users/#{current_user.id}/challenges/#{@challenge.id}"
   end
 
 
