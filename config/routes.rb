@@ -14,9 +14,6 @@ Rails.application.routes.draw do
     post '/:user_id/challenges', to: 'challenges#create'
     get '/:user_id/challenges/:challenge_id', to: 'challenges#show'
     patch '/:user_id/challenges/:challenge_id/update', to: 'challenges#update'
-
   end
-
-
   # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end

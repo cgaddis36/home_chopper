@@ -14,7 +14,6 @@ describe 'User ' do
   end
 
   it 'can start a game' do
-
     visit "/users/#{@bob.id}/challenges/#{@game.id}"
 
     expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")

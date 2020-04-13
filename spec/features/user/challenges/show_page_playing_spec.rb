@@ -14,7 +14,6 @@ describe 'User ' do
   end
 
   it 'can play a game' do
-
     visit "/users/#{@bob.id}/challenges/#{@game.id}"
 
     expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
@@ -35,17 +34,17 @@ describe 'User ' do
 
     expect(page).to have_content("You're making #{@game.meal_type}")
     expect(page).to have_content("Here are your mystery basket contents!")
-    #having trouble with test recognizing targeted sections.  Hashed out until I can find another set of eyes to help. maybe I'm missing something.
+    # having trouble with test recognizing targeted sections.  Hashed out until I can find another set of eyes to help. maybe I'm missing something.
 
     # within "#ingredient-#{first_ingredient.id}" do
-      expect(page).to have_content("#{contents[0].name}")
+    expect(page).to have_content("#{contents[0].name}")
     # end
 
     # within "#ingredient-#{second_ingredient.id}" do
-      expect(page).to have_content("#{contents[1].name}")
+    expect(page).to have_content("#{contents[1].name}")
     # end
     # within "#ingredient-#{third_ingredient.id}" do
-      expect(page).to have_content("#{contents[2].name}")
+    expect(page).to have_content("#{contents[2].name}")
     # end
 
     expect(page).to have_button("Pause Game")

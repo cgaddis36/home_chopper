@@ -10,7 +10,7 @@ RSpec.describe Challenge, type: :model do
   describe 'relationships' do
     it { should belong_to :user }
     it { should have_many :challenge_ingredients }
-    it {should have_many(:ingredients).through(:challenge_ingredients)}
+    it { should have_many(:ingredients).through(:challenge_ingredients) }
   end
 
   describe 'instance methods' do
@@ -60,6 +60,14 @@ RSpec.describe Challenge, type: :model do
       expect(@game.game_status).to eq("before")
 
       @game.finalize_game
+
+      expect(@game.game_status).to eq("done")
+    end
+
+    it "can change the challenge status to complete" do
+      expect(@game.game_status).to eq("before")
+
+      @game.game_complete
 
       expect(@game.game_status).to eq("complete")
     end

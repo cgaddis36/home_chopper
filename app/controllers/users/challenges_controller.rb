@@ -1,5 +1,4 @@
 class Users::ChallengesController < Users::BaseController
-
   def new
     @challenge = Challenge.new(challenge_params)
   end
@@ -11,16 +10,16 @@ class Users::ChallengesController < Users::BaseController
       redirect_to "/users/#{current_user.id}/challenges/#{challenge.id}"
     else
       flash[:error] = challenge.errors.full_messages.to_sentence
-      render :new
-    end
-
-    def show
-      @challenge = Challenge.find(params[:challenge_id])
+      redirect_to "/users/#{current_user.id}/challenges/new"
     end
   end
 
-def update
-  @challenge = Challenge.find(params[:challenge_id])
+  def show
+    @challenge = Challenge.find(params[:challenge_id])
+  end
+
+  def update
+    @challenge = Challenge.find(params[:challenge_id])
     if params[:game_event] == "start"
       @challenge.start_game
     elsif params[:game_event] == "playing"
@@ -32,18 +31,13 @@ def update
     elsif params[:game_event] == "done"
       @challenge.finalize_game
     elsif params[:game_event] == "save_photo"
-      #needs photo functionality added - active storage??
+      # needs photo functionality added - active storage??
       @challenge.game_complete
     elsif params[:game_event] == "no_photo"
       @challenge.game_complete
     end
-     redirect_to "/users/#{current_user.id}/challenges/#{@challenge.id}"
+    redirect_to "/users/#{current_user.id}/challenges/#{@challenge.id}"
   end
-
-
-
-
-
 
   private
 

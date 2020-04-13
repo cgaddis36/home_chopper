@@ -13,9 +13,8 @@ describe 'User ' do
     @contents = @game.ingredients
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
-#test is without a timer, so it defininitely needs to be revised after the timer is added
+  # test is without a timer, so it defininitely needs to be revised after the timer is added
   it 'can complete a game' do
-    
     visit "/users/#{@bob.id}/challenges/#{@game.id}"
     click_on "Let's Get Choppin'!"
     click_on "I Finished Early!"
