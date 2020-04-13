@@ -1,3 +1,5 @@
+# rubocop:disable Style/ClassAndModuleChildren
+
 class Users::IngredientsController < Users::BaseController
   def index
     @ingredients = User.find(params[:user_id]).ingredients
@@ -26,3 +28,5 @@ class Users::IngredientsController < Users::BaseController
     params.permit(:name)
   end
 end
+
+# rubocop:enable Style/ClassAndModuleChildren
