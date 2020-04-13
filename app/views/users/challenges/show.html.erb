@@ -10,7 +10,7 @@
       <h2> Your basket will have <%="#{@challenge.basket_size}"%> random ingredients in it.</h2>
       <h2> You're making <%="#{@challenge.meal_type}"%> in this challenge.</h2>
       <h2> You will have <%="#{@challenge.time_limit}"%> minutes to cook.</h2>
-      <h2><%= button_to "Let's Get Choppin'!", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "start"}, method: :patch %></h2>
+      <h2><%= button_to "Let's Get Choppin'!", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "playing"}, method: :patch %></h2>
     </main>
 </center>
 
