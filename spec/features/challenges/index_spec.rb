@@ -56,7 +56,7 @@ describe 'User ' do
     expect(@jans_lunch.game_status).to eq("complete")
 
     visit "/challenges"
-save_and_open_page
+
     expect(current_path).to eq("/challenges")
     expect(page).to have_content("Solo Challenges")
     within "#3ingredients" do
