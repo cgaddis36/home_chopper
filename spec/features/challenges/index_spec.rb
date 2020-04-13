@@ -16,7 +16,7 @@ describe 'User ' do
     @cinnamon = @bob.ingredients.create!(name: "Cinnamon")
     @eggs = @bob.ingredients.create!(name: "Eggs")
     @toast = @bob.ingredients.create!(name: "Toast")
-    @jans_breakfast = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast", status:)
+    @jans_breakfast = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast")
     ChallengeIngredient.create!(challenge_id: @jans_breakfast.id, ingredient_id: @jelly.id)
     ChallengeIngredient.create!(challenge_id: @jans_breakfast.id, ingredient_id: @lemon.id)
     ChallengeIngredient.create!(challenge_id: @jans_breakfast.id, ingredient_id: @avacado.id)

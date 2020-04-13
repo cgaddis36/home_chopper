@@ -11,7 +11,7 @@ class Challenge < ApplicationRecord
 
   def self.three_ingredients
     binding.pry
-    where("basket_size = 3 and game_status = 'complete'").order(created_at: :DESC)
+    where("basket_size = 3").order(created_at: :DESC)
   end
 
   def self.five_ingredients
