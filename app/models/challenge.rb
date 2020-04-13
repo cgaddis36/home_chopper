@@ -10,11 +10,13 @@ class Challenge < ApplicationRecord
   has_many :ingredients, through: :challenge_ingredients
 
   def self.three_ingredients
-    where('basket_size = 3').order(created_at: :DESC)
+    binding.pry
+    where("basket_size = 3 and game_status = 'complete'").order(created_at: :DESC)
   end
 
   def self.five_ingredients
-    where('basket_size = 5').order(created_at: :DESC)
+    binding.pry
+    where("basket_size = 5 and game_status = 'complete'").order(created_at: :DESC)
   end
 
   def start_game
