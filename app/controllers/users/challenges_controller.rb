@@ -1,3 +1,6 @@
+# rubocop:disable Style/ClassAndModuleChildren
+# rubocop:disable Metrics/MethodLength
+
 class Users::ChallengesController < Users::BaseController
   def new
     @challenge = Challenge.new(challenge_params)
@@ -45,3 +48,6 @@ class Users::ChallengesController < Users::BaseController
     params.permit(:time_limit, :basket_size, :meal_type, :game_status)
   end
 end
+
+# rubocop:enable Style/ClassAndModuleChildren
+# rubocop:enable Metrics/MethodLength
