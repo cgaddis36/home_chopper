@@ -16,7 +16,7 @@ describe 'User ' do
     @cinnamon = @bob.ingredients.create!(name: "Cinnamon")
     @eggs = @bob.ingredients.create!(name: "Eggs")
     @toast = @bob.ingredients.create!(name: "Toast")
-    @jans_breakfast = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast")
+    @jans_breakfast = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast", status:)
     ChallengeIngredient.create!(challenge_id: @jans_breakfast.id, ingredient_id: @jelly.id)
     ChallengeIngredient.create!(challenge_id: @jans_breakfast.id, ingredient_id: @lemon.id)
     ChallengeIngredient.create!(challenge_id: @jans_breakfast.id, ingredient_id: @avacado.id)
@@ -36,7 +36,12 @@ describe 'User ' do
     ChallengeIngredient.create!(challenge_id: @bobs_snack.id, ingredient_id: @eggs.id)
     ChallengeIngredient.create!(challenge_id: @bobs_snack.id, ingredient_id: @toast.id)
     ChallengeIngredient.create!(challenge_id: @bobs_snack.id, ingredient_id: @blueberries.id)
+    @jans_second_breakfast = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast")
+    ChallengeIngredient.create!(challenge_id: @jans_second_breakfast.id, ingredient_id: @jelly.id)
+    ChallengeIngredient.create!(challenge_id: @jans_second_breakfast.id, ingredient_id: @lemon.id)
+    ChallengeIngredient.create!(challenge_id: @jans_second_breakfast.id, ingredient_id: @avacado.id)
   end
+
   it 'can see all the games that have been played' do
     visit "/challenges"
 
