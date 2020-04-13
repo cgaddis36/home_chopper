@@ -3,19 +3,18 @@ require 'rails_helper'
 RSpec.describe 'as a user' do
   describe 'on the dashboard' do
     it 'has a start button for game' do
+      bob = User.create(name: "Bob", email: "bob@sample.com", google_token: "12345", role: 0)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(bob)
 
-      user = User.create(name: "Raymond")
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      
-      visit '/user/dashboard'
+      visit "/users/#{bob.id}/dashboard"
 
       expect(page).to have_button("Start Game")
-    end  
+    end
 
     it "can not visit dashboard if not logged in" do
-      visit '/user/dashboard'
+      visit "/"
 
-      expect(page).to have_content("The page you were looking for doesn't exist")
+      expect(page).to_not have_content("Dashboard")
     end
   end
 end
