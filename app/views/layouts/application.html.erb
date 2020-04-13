@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <body>
@@ -20,6 +20,88 @@
         <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li> 
       <% end %>
     </ul>
+</head> 
+
+
+<h3>Countdown Clock</h3> 
+<div id="clockdiv"> 
+  <div> 
+    <span class="hours" id="hour"></span> 
+    <div class="smalltext">Hours</div> 
+  </div> 
+  <div> 
+    <span class="minutes" id="minute"></span> 
+    <div class="smalltext">Minutes</div> 
+  </div> 
+  <div> 
+    <span class="seconds" id="second"></span> 
+    <div class="smalltext">Seconds</div> 
+  </div> 
+</div> 
+
+<p id="demo"></p> 
+
+<section class="num">
+    <p>Enter Time Limit</p>
+    <label for="num">Mintues:</label>
+    <input id="inputNumber" type="number">
+    <button id="submitButton" type="submit">submit</button>
+</section>
+<script>
+
+var submitButton = document.querySelector("#submitButton")
+
+submitButton.addEventListener('click', () => {
+
+var num = document.querySelector("#inputNumber").value
+var personInput = (Number(num)*60) * 1000
+
+var deadline = new Date(Date.now() + personInput).getTime();
+var x = setInterval(function() { 
+  
+var now = new Date().getTime(); 
+
+var t = deadline - now; 
+ 
+var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+
+document.getElementById("hour").innerHTML =hours; 
+document.getElementById("minute").innerHTML = minutes;  
+document.getElementById("second").innerHTML =seconds;  
+if (t < 0) { 
+        clearInterval(x); 
+        
+        document.getElementById("demo").innerHTML = "TIME'S UP";  
+        document.getElementById("hour").innerHTML ='0'; 
+        document.getElementById("minute").innerHTML ='0' ;  
+        document.getElementById("second").innerHTML = '0'; } 
+}, 1000);
+
+})
+</script>
+
+
+<p>Click "Try it". Wait 3 seconds. The page will alert "Hello".</p>
+<p>Click "Stop" to prevent the first function to execute.</p>
+<p>(You must click "Stop" before the 3 seconds are up.)</p>
+
+<button onclick="myVar = setTimeout(myFunction, 3000)">Try it</button>
+
+<button onclick="clearTimeout(myVar)">Stop it</button>
+
+<script>
+function myFunction() {
+  alert("This is an alert");
+}
+</script>
+
+
+
+
+
+
     <center>
       <%= yield %>
     </center>
