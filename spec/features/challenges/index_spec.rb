@@ -37,14 +37,26 @@ describe 'User ' do
     ChallengeIngredient.create!(challenge_id: @bobs_snack.id, ingredient_id: @toast.id)
     ChallengeIngredient.create!(challenge_id: @bobs_snack.id, ingredient_id: @blueberries.id)
     @jans_second_breakfast = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast")
-    ChallengeIngredient.create!(challenge_id: @jans_second_breakfast.id, ingredient_id: @jelly.id)
-    ChallengeIngredient.create!(challenge_id: @jans_second_breakfast.id, ingredient_id: @lemon.id)
-    ChallengeIngredient.create!(challenge_id: @jans_second_breakfast.id, ingredient_id: @avacado.id)
   end
 
   it 'can see all the games that have been played' do
-    visit "/challenges"
+    @bobs_snack.game_complete
+    @bobs_snack.reload
+    @bobs_dinner.game_complete
+    @bobs_dinner.reload
+    @jans_breakfast.game_complete
+    @jans_breakfast.reload
+    @jans_lunch.game_complete
+    @jans_lunch.reload
 
+    expect(@jans_second_breakfast.game_status).to eq("before")
+    expect(@bobs_snack.game_status).to eq("complete")
+    expect(@bobs_dinner.game_status).to eq("complete")
+    expect(@jans_breakfast.game_status).to eq("complete")
+    expect(@jans_lunch.game_status).to eq("complete")
+
+    visit "/challenges"
+save_and_open_page
     expect(current_path).to eq("/challenges")
     expect(page).to have_content("Solo Challenges")
     within "#3ingredients" do
