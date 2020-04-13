@@ -30,11 +30,9 @@ class Challenge < ApplicationRecord
   end
 
   def basket_contents
-    @contents ||= self.user.ingredients.sample(self.basket_size)
-      @contents.each do |ingredient|
+    contents = self.user.ingredients.sample(self.basket_size)
+      contents.each do |ingredient|
         ChallengeIngredient.create(challenge_id: self.id, ingredient_id: ingredient.id)
       end
   end
-
-
 end
