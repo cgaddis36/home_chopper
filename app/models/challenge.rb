@@ -2,7 +2,7 @@ class Challenge < ApplicationRecord
   validates_presence_of :time_limit
   validates_presence_of :basket_size
   validates_presence_of :meal_type
-  enum game_status: %i[before playing paused cancelled complete]
+  enum game_status: %i[before playing paused cancelled done complete]
   enum meal_type: %i[breakfast lunch dinner snack dessert]
 
   belongs_to :user
@@ -22,12 +22,19 @@ class Challenge < ApplicationRecord
   end
 
   def finalize_game
+    self.update_column("game_status", "done")
+  end
+
+  def game_complete
     self.update_column("game_status", "complete")
   end
 
   def basket_contents
-    basket_pool = self.user.ingredients
-    contents = basket_pool.sample(self.basket_size)
+    @contents ||= self.user.ingredients.sample(self.basket_size)
+      @contents.each do |ingredient|
+        ChallengeIngredient.create(challenge_id: self.id, ingredient_id: ingredient.id)
+      end
   end
+
 
 end
