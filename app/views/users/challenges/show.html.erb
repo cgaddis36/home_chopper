@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <div id="navbar">
   <ul class="topnav">
     <li><a class="active" href="/">Home</a></li>
@@ -14,16 +16,29 @@
 <h1>Solo Challenge!</h1>
 
 <% if @challenge.game_status == "before" %>
+<div id="before">
   <main class="game-info-main">
     <h2>This is a solo game.  You race against the clock to build a fabulous dish using all the items in your mystery basket.</h2>
     <h2>As soon as you click "Let's Get Choppin'!", Your basket contents will be revealed, your timer will start, and the game will begin!</h2>
     <h2> Your basket will have <%="#{@challenge.basket_size}"%> random ingredients in it.</h2>
     <h2> You're making <%="#{@challenge.meal_type}"%> in this challenge.</h2>
     <h2> You will have <%="#{@challenge.time_limit}"%> minutes to cook.</h2>
-    <h2><%= button_to "Let's Get Choppin'!", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "playing"}, method: :patch %></h2>
+    <button onclick="myFunction()" id="hide">Let's Get Choppin'!</button>
   </main>
+</div>
 
-<% elsif @challenge.game_status == "playing" %>
+<script>
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("#before").hide();
+    $("#navbar").hide();
+    $("#divPlaying").show();
+  });
+});
+</script>
+
+
+<div id="divPlaying" style="display: none;">
   <main class="game-play-main">
     <h2>You're making <%="#{@challenge.meal_type}"%>!</h2>
     <h1>Here are your mystery basket contents!</h1>
@@ -52,15 +67,6 @@
 
 <p id="demo"></p> 
 
-<div id="num-field">
-    <p>Start The Clock</p>
-
-    <label for="num">Mintues:</label>
-    <input id="inputNumber" type="number">
-    <button onclick="myFunction() " id="submitButton" type="submit">submit</button>
-
-</div>
-
 <script>
   function myFunction() {
     document.querySelector("#num-field").setAttribute("id", "hidden"); 
@@ -69,11 +75,11 @@
 </script>
 
 <script>
-  var submitButton = document.querySelector("#submitButton")
+  var submitButton = document.querySelector("#hide")
 
   submitButton.addEventListener('click', () => {
     
-    var num = document.querySelector("#inputNumber").value
+  var num = "<%="#{@challenge.time_limit}"%>"
   var personInput = (Number(num)*60) * 1000
 
   var deadline = new Date(Date.now() + personInput).getTime();
@@ -102,23 +108,25 @@
     </script>
     <br><br>
 
-    <button onclick="myHints() " id="hintButton" type="submit">Request Recipe Hints</button><br><br>
-      <div class="hints" id="hidden">
+    <button id="hintButton">Request Recipe Hints</button><br><br>
+      <div id="hints" style="display: none;">
       Hints<br><br>
       ALL the Hints<br><br>
       HINTS ON HINTS
       </div>
     <script>
-    function myHints() {
-      document.querySelector(".hints").setAttribute("id", "unhidden"); 
-    }
+      $(document).ready(function(){
+        $("#hintButton").click(function(){
+          $("#hints").show();
+        });
+      });
     </script>
     <br><br><br>
     <%= button_to "Recipe Book", "/users/hints", method: :get %><br><br><br>
         
     <%= button_to "Cancel Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "cancel"}, method: :patch %><br><br><br>
     <%= button_to "I Finished Early!", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "done"}, method: :patch %><br><br><br>
-
+</div>
 
   <% elsif @challenge.game_status == "cancelled" %>
     <main class="game-cancelled-main">
