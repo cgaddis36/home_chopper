@@ -6,7 +6,7 @@
     <h4>Three Ingredient Challenges</h4>
     <% Challenge.three_ingredients.each do |challenge| %>
       <section id= "challenge-<%="#{challenge.id}"%>">
-        <h5>Challenge Id:<%= "#{challenge.id}" %></h5>
+        <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
         <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
         <h5>Basket Size: <%= "#{challenge.basket_size}" %> ingredients</h5>
         <h5>Challenge Ingredients</h5>
@@ -20,7 +20,7 @@
     <h4>Five Ingredient Challenges</h4>
     <% Challenge.five_ingredients.each do |challenge| %>
       <section id= "challenge-<%="#{challenge.id}"%>">
-        <h5>Challenge Id:<%= "#{challenge.id}" %></h5>
+        <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
         <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
         <h5>Basket Size: <%= "#{challenge.basket_size}" %> ingredients</h5>
         <h5>Challenge Ingredients</h5>
