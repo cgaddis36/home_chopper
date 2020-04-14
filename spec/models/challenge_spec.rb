@@ -57,7 +57,17 @@ RSpec.describe Challenge, type: :model do
     end
 
     it ".can find all solo games with five ingredients" do
-      expect(Challenge.three_ingredients.count).to eq(2)
+      expect(Challenge.five_ingredients.count).to eq(2)
+    end
+
+    it ".can find all solo games with three ingredients for a user" do
+      expect(Challenge.my_three_ingredients(@janis).count).to eq(1)
+      expect(Challenge.my_three_ingredients(@bob).count).to eq(1)
+    end
+
+    it ".can find all solo games with five ingredients for a user" do
+      expect(Challenge.my_five_ingredients(@janis).count).to eq(1)
+      expect(Challenge.my_five_ingredients(@bob).count).to eq(1)
     end
   end
 
