@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User ' do
+RSpec.describe 'User ' do
   before(:each) do
     @janis = User.create!(name: "Janice", email: "janice@sample.com", google_token: "678910", role: 0)
     @peanut_butter = @janis.ingredients.create!(name: "Peanut Butter")
@@ -57,12 +57,14 @@ describe 'User ' do
 
     visit "/challenges"
 
+    expect(page).to_not have_link(@jans_second_breakfast.id)
+
     expect(current_path).to eq("/challenges")
     expect(page).to have_content("Solo Challenges")
     within "#3ingredients" do
       within "#challenge-#{@jans_breakfast.id}" do
         expect(page).to have_content("Basket Size: #{@jans_breakfast.basket_size}")
-        expect(page).to have_content(@jans_breakfast.id)
+        expect(page).to have_button(@jans_breakfast.id)
         expect(page).to have_content(@jelly.name)
         expect(page).to have_content(@lemon.name)
         expect(page).to have_content(@avacado.name)
@@ -71,7 +73,7 @@ describe 'User ' do
 
       within "#challenge-#{@bobs_dinner.id}" do
         expect(page).to have_content("Basket Size: #{@bobs_dinner.basket_size}")
-        expect(page).to have_content(@bobs_dinner.id)
+        expect(page).to have_button(@bobs_dinner.id)
         expect(page).to have_content(@squid.name)
         expect(page).to have_content(@blueberries.name)
         expect(page).to have_content(@toast.name)
@@ -82,7 +84,7 @@ describe 'User ' do
     within "#5ingredients" do
       within "#challenge-#{@jans_lunch.id}" do
         expect(page).to have_content("Basket Size: #{@jans_lunch.basket_size}")
-        expect(page).to have_content(@jans_lunch.id)
+        expect(page).to have_button(@jans_lunch.id)
         expect(page).to have_content(@quail_eggs.name)
         expect(page).to have_content(@sprite.name)
         expect(page).to have_content(@lemon.name)
@@ -93,7 +95,7 @@ describe 'User ' do
 
       within "#challenge-#{@bobs_snack.id}" do
         expect(page).to have_content("Basket Size: #{@bobs_snack.basket_size}")
-        expect(page).to have_content(@bobs_snack.id)
+        expect(page).to have_button(@bobs_snack.id)
         expect(page).to have_content(@chocolate.name)
         expect(page).to have_content(@cinnamon.name)
         expect(page).to have_content(@eggs.name)
@@ -102,5 +104,9 @@ describe 'User ' do
         expect(page).to have_content("#{@bobs_snack.time_limit} minutes")
       end
     end
+
+    click_on "#{@bobs_snack.id}"
+
+    expect(current_path).to eq("/challenges/#{@bobs_snack.id}")
   end
 end
