@@ -9,6 +9,7 @@ RSpec.describe Challenge, type: :model do
 
   describe 'relationships' do
     it { should belong_to :user }
+    it { should have_many :ratings }
     it { should have_many :challenge_ingredients }
     it { should have_many(:ingredients).through(:challenge_ingredients) }
   end

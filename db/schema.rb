@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_214737) do
+ActiveRecord::Schema.define(version: 2020_04_14_043104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 2020_04_11_214737) do
     t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "challenge_id"
+    t.integer "stars"
+    t.index ["challenge_id"], name: "index_ratings_on_challenge_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -55,4 +63,6 @@ ActiveRecord::Schema.define(version: 2020_04_11_214737) do
   add_foreign_key "challenge_ingredients", "ingredients"
   add_foreign_key "challenges", "users"
   add_foreign_key "ingredients", "users"
+  add_foreign_key "ratings", "challenges"
+  add_foreign_key "ratings", "users"
 end

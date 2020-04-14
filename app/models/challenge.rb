@@ -8,6 +8,7 @@ class Challenge < ApplicationRecord
   belongs_to :user
   has_many :challenge_ingredients
   has_many :ingredients, through: :challenge_ingredients
+  has_many :ratings
 
   def self.three_ingredients
     where('basket_size = 3').where("game_status = '5'").order(created_at: :DESC)
