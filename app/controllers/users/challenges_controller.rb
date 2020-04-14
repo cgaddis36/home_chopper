@@ -34,9 +34,9 @@ class Users::ChallengesController < Users::BaseController
       @challenge.cancel_game
     elsif params[:game_event] == "done"
       @challenge.finalize_game
-    elsif params[:game_event] == "save_photo"
-      # needs photo functionality added - active storage??
-      # @challenge.game_complete
+    elsif params[:photo]
+      @challenge.photo.attach(io: StringIO.new, filename: params[:photo])
+      @challenge.game_complete
     elsif params[:game_event] == "no_photo"
       @challenge.game_complete
     end
