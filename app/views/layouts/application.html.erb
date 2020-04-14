@@ -6,12 +6,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <body>
 
-  <% unless controller_name == "games" %>
+  <% unless controller_name == "challenges" %>
     <ul class="topnav">
       <li><a class="active" href="/">Home</a></li>
       <li><a href="#friends">Friends</a></li>

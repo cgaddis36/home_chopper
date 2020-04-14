@@ -14,7 +14,7 @@
  *= require_self
  */
 
- h1 {background-color: black;
+ h1 {background-color: rgb(221, 229, 247);
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color: white;
     }
@@ -80,12 +80,12 @@ ul.topnav li.right {float: right;}
 
 body{ 
   text-align: center; 
-    background: #00ECB9; 
+    background: rgb(0, 236, 236); 
   font-family: sans-serif; 
   font-weight: 100; 
 } 
 h1{ 
-  color: #396; 
+  color: rgb(51, 92, 153); 
   font-weight: 100; 
   font-size: 40px; 
   margin: 40px 0px 20px; 
@@ -101,7 +101,7 @@ h1{
 #clockdiv > div{ 
   padding: 10px; 
     border-radius: 3px; 
-    background: #00BF96; 
+    background: rgb(26, 174, 219); 
     display: inline-block; 
 } 
 #clockdiv div > span{ 
@@ -121,4 +121,27 @@ h1{
 
 #unhidden {
   font-style: italic;
+}
+
+input[type="button"], input[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.input[type="button"], input[type="submit"]:hover {background-color: #3e8e41}
+
+.input[type="button"], input[type="submit"]:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

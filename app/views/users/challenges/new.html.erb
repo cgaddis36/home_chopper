@@ -1,3 +1,17 @@
+<div id="navbar">
+  <ul class="topnav">
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="#friends">Friends</a></li>
+    <% if current_user %>
+      <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
+      <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
+      <li class="right"><%= link_to "Pantry", "/users/#{current_user.id}/ingredients", method: :get%></li>
+    <% else %>
+      <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
+    <% end %>
+  </ul>
+</div>
+
 <h2>New Challenge</h2>
   <%= form_tag "/users/#{current_user.id}/challenges", method: :post do %>
   <%= label_tag :time_limit %>
