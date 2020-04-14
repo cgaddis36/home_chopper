@@ -51,8 +51,4 @@ class Challenge < ApplicationRecord
       ChallengeIngredient.create(challenge_id: self.id, ingredient_id: ingredient.id)
     end
   end
-
-  def which_ingredients
-    self.ingredients
-  end
 end
