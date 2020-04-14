@@ -10,6 +10,8 @@
   </head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <body>
+
+  <% unless controller_name == "games" %>
     <ul class="topnav">
       <li><a class="active" href="/">Home</a></li>
       <li><a href="#friends">Friends</a></li>
@@ -21,86 +23,13 @@
         <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
       <% end %>
     </ul>
-</head>
-
-<h3>Countdown Clock</h3> 
-<div id="clockdiv"> 
-  <div> 
-    <span class="hours" id="hour"></span> 
-    <div class="smalltext">Hours</div> 
-  </div> 
-  <div> 
-    <span class="minutes" id="minute"></span> 
-    <div class="smalltext">Minutes</div> 
-  </div> 
-  <div> 
-    <span class="seconds" id="second"></span> 
-    <div class="smalltext">Seconds</div> 
-  </div> 
-</div> 
-
-<p id="demo"></p> 
-
-<div id="num-field">
-    <p>Enter Time Limit</p>
-
-    <label for="num">Mintues:</label>
-    <input id="inputNumber" type="number">
-    <button onclick="myFunction() " id="submitButton" type="submit">submit</button>
-
-</div>
-
-
-
-<script>
-  function myFunction() {
-    document.querySelector("#num-field").setAttribute("id", "hidden"); 
-  }
-</script>
-
-
-
-<script>
-  var submitButton = document.querySelector("#submitButton")
-
-  submitButton.addEventListener('click', () => {
-
-
-
-  var num = document.querySelector("#inputNumber").value
-  var personInput = (Number(num)*60) * 1000
-
-  var deadline = new Date(Date.now() + personInput).getTime();
-  var x = setInterval(function() { 
-    
-  var now = new Date().getTime(); 
-
-  var t = deadline - now; 
+  <% end %>
   
-  var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-  var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-  var seconds = Math.floor((t % (1000 * 60)) / 1000); 
-
-  document.getElementById("hour").innerHTML =hours; 
-  document.getElementById("minute").innerHTML = minutes;  
-  document.getElementById("second").innerHTML =seconds;  
-  if (t < 0) { 
-    clearInterval(x); 
-          document.getElementById("demo").innerHTML = "TIME'S UP";  
-          document.getElementById("hour").innerHTML ='0'; 
-          document.getElementById("minute").innerHTML ='0' ;  
-          document.getElementById("second").innerHTML = '0'; } 
-  }, 1000);
-
-})
-</script>
-    <center>
-      <center>
-   <% flash.each do |name, msg| -%>
-         <%= content_tag :div, msg, class: name %>
-       <% end -%>
- </center>
-      <%= yield %>
-    </center>
+  <center>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+    <%= yield %>
+  </center>
   </body>
 </html>

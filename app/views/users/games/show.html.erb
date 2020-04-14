@@ -1,0 +1,99 @@
+
+<div id="navbar">
+  <ul class="topnav">
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="#friends">Friends</a></li>
+    <% if current_user %>
+      <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
+      <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
+      <li class="right"><%= link_to "Pantry", "/users/#{current_user.id}/ingredients", method: :get%></li>
+    <% else %>
+      <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
+    <% end %>
+  </ul>
+</div>
+
+<h3>Countdown Clock</h3> 
+<div id="clockdiv"> 
+  <div> 
+    <span class="hours" id="hour"></span> 
+    <div class="smalltext">Hours</div> 
+  </div> 
+  <div> 
+    <span class="minutes" id="minute"></span> 
+    <div class="smalltext">Minutes</div> 
+  </div> 
+  <div> 
+    <span class="seconds" id="second"></span> 
+    <div class="smalltext">Seconds</div> 
+  </div> 
+</div> 
+
+<p id="demo"></p> 
+
+<div id="num-field">
+    <p>Start Clock</p>
+
+    <label for="num">Mintues:</label>
+    <input id="inputNumber" type="number">
+    <button onclick="myFunction() " id="submitButton" type="submit">submit</button>
+
+</div>
+
+<script>
+  function myFunction() {
+    document.querySelector("#num-field").setAttribute("id", "hidden"); 
+    document.querySelector("#navbar").setAttribute("id", "hidden"); 
+  }
+</script>
+
+
+
+<script>
+  var submitButton = document.querySelector("#submitButton")
+
+  submitButton.addEventListener('click', () => {
+
+  var num = document.querySelector("#inputNumber").value
+  var personInput = (Number(num)*60) * 1000
+
+  var deadline = new Date(Date.now() + personInput).getTime();
+  var x = setInterval(function() { 
+    
+  var now = new Date().getTime(); 
+
+  var t = deadline - now; 
+  
+  var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+  var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+  var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+
+  document.getElementById("hour").innerHTML =hours; 
+  document.getElementById("minute").innerHTML = minutes;  
+  document.getElementById("second").innerHTML =seconds;  
+  if (t < 0) { 
+    clearInterval(x); 
+          document.getElementById("demo").innerHTML = "TIME'S UP";  
+          document.getElementById("hour").innerHTML ='0'; 
+          document.getElementById("minute").innerHTML ='0' ;  
+          document.getElementById("second").innerHTML = '0'; } 
+  }, 1000);
+
+})
+</script>
+<br><br>
+
+<button onclick="myHints() " id="hintButton" type="submit">Request Recipe Hints</button><br><br>
+  <div class="hints" id="hidden">
+  Hints<br><br>
+  ALL the Hints<br><br>
+  HINTS ON HINTS
+  </div>
+<script>
+function myHints() {
+  document.querySelector(".hints").setAttribute("id", "unhidden"); 
+}
+</script>
+<%= link_to "Quit Game", "/" %>
+<br><br><br>
+<%= button_to "Request Hints", "/users/hints", method: :get %>

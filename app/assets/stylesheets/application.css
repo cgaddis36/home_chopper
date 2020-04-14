@@ -118,3 +118,7 @@ h1{
 #hidden {
   display: none;
 }
+
+#unhidden {
+  font-style: italic;
+}
