@@ -15,5 +15,10 @@ Rails.application.routes.draw do
     get '/hints', to: 'games#hints'
   end
 
+    get '/:user_id/challenges/new', to: 'challenges#new'
+    post '/:user_id/challenges', to: 'challenges#create'
+    get '/:user_id/challenges/:challenge_id', to: 'challenges#show'
+    patch '/:user_id/challenges/:challenge_id/update', to: 'challenges#update'
+  end
   # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end
