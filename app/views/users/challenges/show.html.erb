@@ -59,9 +59,9 @@
     <main class="game-done-main">
       <h2>Congratulations!!</h2>
       <h2>You did it! Share photo of your creation below!</h2>
-      <h2><%= form_tag "/users/#{current_user.id}/challenges/update", params: {game_event: "save_photo"}, method: :patch do %>
+      <h2><%= form_tag "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "save_photo"}, method: :patch do %>
         <%= label_tag :photo %>
-        <%= text_field_tag :photo %>
+        <%= file_field_tag :photo %>
         <%= submit_tag "Save Photo"  %>
       <% end %><br></h2>
       <h2><%= button_to "Don't Save a Photo", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "no_photo"}, method: :patch %></h2><br>
