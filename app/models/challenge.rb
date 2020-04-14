@@ -17,6 +17,14 @@ class Challenge < ApplicationRecord
     where('basket_size = 5').where("game_status = '5'").order(created_at: :DESC)
   end
 
+  def self.my_three_ingredients(user)
+    where('basket_size = 3').where("game_status = '5'").where("user_id = #{user.id}").order(created_at: :DESC)
+  end
+
+  def self.my_five_ingredients(user)
+    where('basket_size = 5').where("game_status = '5'").where("user_id = #{user.id}").order(created_at: :DESC)
+  end
+
   def start_game
     self.update_column("game_status", "playing")
   end
@@ -42,9 +50,5 @@ class Challenge < ApplicationRecord
     contents.each do |ingredient|
       ChallengeIngredient.create(challenge_id: self.id, ingredient_id: ingredient.id)
     end
-  end
-
-  def which_ingredients
-    self.ingredients
   end
 end

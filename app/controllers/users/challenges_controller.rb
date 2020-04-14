@@ -2,6 +2,9 @@
 # rubocop:disable Metrics/MethodLength
 
 class Users::ChallengesController < Users::BaseController
+  def index
+  end
+
   def new
     @challenge = Challenge.new(challenge_params)
   end
