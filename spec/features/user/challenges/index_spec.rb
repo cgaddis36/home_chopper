@@ -60,16 +60,16 @@ RSpec.describe 'User ' do
     expect(page).to_not have_link(@jans_second_breakfast.id)
 
     expect(current_path).to eq("/users/#{@janis.id}/challenges")
-      expect(page).to have_content("My Solo Challenges")
-      within "#3ingredients" do
-        within "#challenge-#{@jans_breakfast.id}" do
-          expect(page).to have_content("Basket Size: #{@jans_breakfast.basket_size}")
-          expect(page).to have_button(@jans_breakfast.id)
-          expect(page).to have_content(@jelly.name)
-          expect(page).to have_content(@lemon.name)
-          expect(page).to have_content(@avacado.name)
-          expect(page).to have_content("#{@jans_breakfast.time_limit} minutes")
-        end
+    expect(page).to have_content("My Solo Challenges")
+    within "#3ingredients" do
+      within "#challenge-#{@jans_breakfast.id}" do
+        expect(page).to have_content("Basket Size: #{@jans_breakfast.basket_size}")
+        expect(page).to have_button(@jans_breakfast.id)
+        expect(page).to have_content(@jelly.name)
+        expect(page).to have_content(@lemon.name)
+        expect(page).to have_content(@avacado.name)
+        expect(page).to have_content("#{@jans_breakfast.time_limit} minutes")
+      end
 
       within "#challenge-#{@jans_dinner.id}" do
         expect(page).to have_content("Basket Size: #{@jans_dinner.basket_size}")
