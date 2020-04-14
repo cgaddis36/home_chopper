@@ -6,6 +6,7 @@ class Challenge < ApplicationRecord
   enum meal_type: %i[breakfast lunch dinner snack dessert]
 
   belongs_to :user
+  has_one_attached :photo
   has_many :challenge_ingredients
   has_many :ingredients, through: :challenge_ingredients
 
