@@ -1,10 +1,10 @@
+
 <div class='all-challenges'>
-<h2>Challenges</h2>
-  <h3>Solo Challenges</h3>
+  <h2>My Solo Challenges</h2>
 
   <section id= '3ingredients'>
     <h4>Three Ingredient Challenges</h4>
-    <% Challenge.three_ingredients.each do |challenge| %>
+    <% Challenge.my_three_ingredients(current_user).each do |challenge| %>
       <section id= "challenge-<%="#{challenge.id}"%>">
         <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
         <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
@@ -18,7 +18,7 @@
 
   <section id= '5ingredients'>
     <h4>Five Ingredient Challenges</h4>
-    <% Challenge.five_ingredients.each do |challenge| %>
+    <% Challenge.my_five_ingredients(current_user).each do |challenge| %>
       <section id= "challenge-<%="#{challenge.id}"%>">
         <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
         <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
