@@ -56,57 +56,57 @@ RSpec.describe 'User ' do
     expect(@jans_lunch.game_status).to eq("complete")
 
     visit "/users/#{@janis.id}/challenges"
-    #
-    # expect(page).to_not have_link(@jans_second_breakfast.id)
-    #
-    # expect(current_path).to eq("/users/#{@janis.id}/challenges")
-    # expect(page).to have_content("My Solo Challenges")
-    # within "#3ingredients" do
-    #   within "#challenge-#{@jans_breakfast.id}" do
-    #     expect(page).to have_content("Basket Size: #{@jans_breakfast.basket_size}")
-    #     expect(page).to have_button(@jans_breakfast.id)
-    #     expect(page).to have_content(@jelly.name)
-    #     expect(page).to have_content(@lemon.name)
-    #     expect(page).to have_content(@avacado.name)
-    #     expect(page).to have_content("#{@jans_breakfast.time_limit} minutes")
-    #   end
-    #
-    #   within "#challenge-#{@jans_dinner.id}" do
-    #     expect(page).to have_content("Basket Size: #{@jans_dinner.basket_size}")
-    #     expect(page).to have_button(@jans_dinner.id)
-    #     expect(page).to have_content(@squid.name)
-    #     expect(page).to have_content(@blueberries.name)
-    #     expect(page).to have_content(@toast.name)
-    #     expect(page).to have_content("#{@jans_dinner.time_limit} minutes")
-    #   end
-    # end
-    #
-    # within "#5ingredients" do
-    #   within "#challenge-#{@jans_lunch.id}" do
-    #     expect(page).to have_content("Basket Size: #{@jans_lunch.basket_size}")
-    #     expect(page).to have_button(@jans_lunch.id)
-    #     expect(page).to have_content(@quail_eggs.name)
-    #     expect(page).to have_content(@sprite.name)
-    #     expect(page).to have_content(@lemon.name)
-    #     expect(page).to have_content(@avacado.name)
-    #     expect(page).to have_content(@peanut_butter.name)
-    #     expect(page).to have_content("#{@jans_lunch.time_limit} minutes")
-    #   end
-    #
-    #   within "#challenge-#{@jans_snack.id}" do
-    #     expect(page).to have_content("Basket Size: #{@jans_snack.basket_size}")
-    #     expect(page).to have_button(@jans_snack.id)
-    #     expect(page).to have_content(@chocolate.name)
-    #     expect(page).to have_content(@cinnamon.name)
-    #     expect(page).to have_content(@eggs.name)
-    #     expect(page).to have_content(@toast.name)
-    #     expect(page).to have_content(@blueberries.name)
-    #     expect(page).to have_content("#{@jans_snack.time_limit} minutes")
-    #   end
-    # end
-    #
-    # click_on "#{@jans_snack.id}"
-    #
-    # expect(current_path).to eq("/challenges/#{@jans_snack.id}")
+
+    expect(page).to_not have_link(@jans_second_breakfast.id)
+
+    expect(current_path).to eq("/users/#{@janis.id}/challenges")
+    expect(page).to have_content("My Solo Challenges")
+    within "#3ingredients" do
+      within "#challenge-#{@jans_breakfast.id}" do
+        expect(page).to have_content("Basket Size: #{@jans_breakfast.basket_size}")
+        expect(page).to have_button(@jans_breakfast.id)
+        expect(page).to have_content(@jelly.name)
+        expect(page).to have_content(@lemon.name)
+        expect(page).to have_content(@avacado.name)
+        expect(page).to have_content("#{@jans_breakfast.time_limit} minutes")
+      end
+
+      within "#challenge-#{@jans_dinner.id}" do
+        expect(page).to have_content("Basket Size: #{@jans_dinner.basket_size}")
+        expect(page).to have_button(@jans_dinner.id)
+        expect(page).to have_content(@squid.name)
+        expect(page).to have_content(@blueberries.name)
+        expect(page).to have_content(@toast.name)
+        expect(page).to have_content("#{@jans_dinner.time_limit} minutes")
+      end
+    end
+
+    within "#5ingredients" do
+      within "#challenge-#{@jans_lunch.id}" do
+        expect(page).to have_content("Basket Size: #{@jans_lunch.basket_size}")
+        expect(page).to have_button(@jans_lunch.id)
+        expect(page).to have_content(@quail_eggs.name)
+        expect(page).to have_content(@sprite.name)
+        expect(page).to have_content(@lemon.name)
+        expect(page).to have_content(@avacado.name)
+        expect(page).to have_content(@peanut_butter.name)
+        expect(page).to have_content("#{@jans_lunch.time_limit} minutes")
+      end
+
+      within "#challenge-#{@jans_snack.id}" do
+        expect(page).to have_content("Basket Size: #{@jans_snack.basket_size}")
+        expect(page).to have_button(@jans_snack.id)
+        expect(page).to have_content(@chocolate.name)
+        expect(page).to have_content(@cinnamon.name)
+        expect(page).to have_content(@eggs.name)
+        expect(page).to have_content(@toast.name)
+        expect(page).to have_content(@blueberries.name)
+        expect(page).to have_content("#{@jans_snack.time_limit} minutes")
+      end
+    end
+
+    click_on "#{@jans_snack.id}"
+
+    expect(current_path).to eq("/challenges/#{@jans_snack.id}")
   end
 end
