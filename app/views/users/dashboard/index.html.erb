@@ -1,2 +1,4 @@
+
 <br><br><%= button_to "Start New Game", "/users/challenges/new", method: :get %><br><br>
+<br><br><%= button_to "Start New Game", "/users/#{current_user.id}/challenges/new", method: :get %><br><br>
 <br><br><%= button_to "See All Challenges", "/challenges", method: :get %><br><br>

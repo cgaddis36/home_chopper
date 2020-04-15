@@ -62,7 +62,11 @@ class Challenge < ApplicationRecord
   end
 
   def ave_rating
+
     self.ratings.average(:stars).to_f.round(1)
+
+    ratings.average(:stars).to_f.round(1)
+
   end
 
   def not_mine?(id)
