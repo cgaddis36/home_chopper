@@ -24,7 +24,6 @@
             <h2><%= ingredient.name %></h2>
           </section>
           <% end %>
-
       <h2><%= button_to "Pause Game", "/users/challenges/#{@challenge.id}", params: {game_event: "pause"}, method: :patch %></h2>
       <h2><%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}", params: {game_event: "cancel"}, method: :patch %></h2>
       <h2><%= button_to "I Finished Early!", "/users/challenges/#{@challenge.id}", params: {game_event: "done"}, method: :patch %></h2>
@@ -40,7 +39,6 @@
       <h1>Game Paused</h1>
     </main>
   </center>
-
 
   <% elsif @challenge.game_status == "cancelled" %>
   <center>
@@ -60,10 +58,10 @@
       <h2>Congratulations!!</h2>
       <h2>You did it! Share photo of your creation below!</h2>
       <h2><%= form_tag "/users/challenges/#{@challenge.id}", params: {game_event: "save_photo"}, method: :patch do %>
-        <%= label_tag :photo %>
-        <%= text_field_tag :photo %>
-        <%= submit_tag "Save Photo"  %>
-      <% end %><br></h2>
+            <%= label_tag :photo %>
+            <%= text_field_tag :photo %>
+            <%= submit_tag "Save Photo"  %>
+          <% end %><br></h2>
       <h2><%= button_to "Don't Save a Photo", "/users/challenges/#{@challenge.id}", params: {game_event: "no_photo"}, method: :patch %></h2><br>
     </main>
   </center>
@@ -87,6 +85,4 @@
       <h2><%= button_to "Your Dashboard", "/users/dashboard", method: :get %></h2>
     </main>
   </center>
-
-  <% else %>
   <% end %>
