@@ -150,5 +150,10 @@ RSpec.describe Challenge, type: :model do
       expect(@jans_breakfast.ave_rating).to eq(4)
       expect(@jans_lunch.ave_rating).to eq(3.5)
     end
+
+    it "can see if a challenge belongs to a user" do
+      expect(@jans_breakfast.not_mine?(@bob.id)).to eq(true)
+      expect(@game.not_mine?(@bob.id)).to eq(false)
+    end
   end
 end
