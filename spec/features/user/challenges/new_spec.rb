@@ -17,7 +17,7 @@ describe 'User ' do
 
     click_on 'Start New Game'
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
+    expect(current_path).to eq("/users/challenges/new")
 
     fill_in 'time_limit', with: '20'
     fill_in 'basket_size', with: '3'
@@ -35,14 +35,14 @@ describe 'User ' do
 
     click_on 'Start New Game'
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
+    expect(current_path).to eq("/users/challenges/new")
 
     fill_in 'time_limit', with: ''
     fill_in 'basket_size', with: '3'
     fill_in 'meal_type', with: 'dinner'
     click_on "Start New Game"
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
+    expect(current_path).to eq("/users/challenges/new")
     expect(page).to have_content("Time limit can't be blank")
   end
 end

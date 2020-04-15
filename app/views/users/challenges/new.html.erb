@@ -1,5 +1,5 @@
 <h2>New Challenge</h2>
-  <%= form_tag "/users/#{current_user.id}/challenges", method: :post do %>
+  <%= form_tag "/users/challenges", method: :post do %>
   <%= label_tag :time_limit %>
   <%= text_field_tag :time_limit, @challenge.time_limit %>
   <%= label_tag :basket_size %>
