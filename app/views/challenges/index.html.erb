@@ -27,4 +27,13 @@
         <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
     <% end %>
   </section>
+
+  <section id= '7ingredients'>
+    <h4>Five Ingredient Challenges</h4>
+      <% Challenge.seven_ingredients.each do |challenge| %>
+      <section id= 'challenge-<%="#{challenge.id}"%>'>
+        <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
+        <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
+    <% end %>
+  </section>
 </div>
