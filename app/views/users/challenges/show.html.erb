@@ -79,9 +79,9 @@
           </section>
           <% end %>
       <% if !@challenge.photos.empty? %>
-        <div style="width:400px; height:auto">
+        <section id='photos' style="width:400px; height:auto">
           <%= link_to image_tag(@challenge.photos.last.image, style:'width:100%'), challenges_path %>
-        </div>
+        </section>
       <% end %>
       <h2><h2>Would you like play again with a fresh basket?</h2></h2>
       <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
