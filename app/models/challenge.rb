@@ -27,7 +27,6 @@ class Challenge < ApplicationRecord
   end
 
   def self.top_challenges
-    # TODO need order by
     Challenge.joins(:ratings).group(:id).select('challenges.*, AVG(stars) AS AverageRating').order('AverageRating').limit(3)
   end
 

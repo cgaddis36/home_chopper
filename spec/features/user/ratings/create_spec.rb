@@ -63,12 +63,10 @@ RSpec.describe "ratings" do
     click_on "See All Challenges"
 
     expect(current_path).to eq("/challenges")
-# binding.pry
     expect(page).to have_content("Top 3 Rated Challenges")
     expect(page).to have_content("#{@jans_lunch.user.name}'s #{@jans_lunch.meal_type} challenge")
     expect(page).to have_content("#{@bobs_dinner.user.name}'s #{@bobs_dinner.meal_type} challenge")
     expect(page).to have_content("#{@javiers_snack.user.name}'s #{@javiers_snack.meal_type} challenge")
-
 
     within "#3ingredients" do
       within "#challenge-#{@jans_breakfast.id}" do
@@ -101,7 +99,6 @@ RSpec.describe "ratings" do
   end
 
   it "cannot see a place to leave a review if it belongs to that user" do
-
     visit "/challenges/#{@javiers_snack.id}"
 
     expect(page).to_not have_content("Submit a Review For This Challenge")

@@ -17,7 +17,7 @@ describe 'User ' do
     visit "/users/#{@bob.id}/challenges/#{@game.id}"
 
     expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
-# save_and_open_page
+
     expect(@game.game_status).to eq("before")
 
     click_on "Let's Get Choppin'!"
