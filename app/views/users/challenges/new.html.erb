@@ -1,10 +1,7 @@
 <h2>New Challenge</h2>
-  <%= form_tag "/users/challenges", method: :post do %>
-  <%= label_tag :time_limit %>
-  <%= text_field_tag :time_limit, @challenge.time_limit %>
-  <%= label_tag :basket_size %>
-  <%= text_field_tag :basket_size, @challenge.basket_size  %>
-  <%= label_tag :meal_type %>
-  <%= text_field_tag :meal_type, @challenge.meal_type  %>
-  <%= submit_tag "Start New Game"  %>
+  <%= form_for @challenge, url: "/users/#{current_user.id}/challenges", method: :post do |f| %>
+  <%= f.select :time_limit, [['20','twenty'],['40','forty'],['60','sixty']], {}, :id=>"time_limit" %>
+  <%= f.select :basket_size, [['Three Ingredients','three'],['Five Ingredients','five'],['Seven Ingredients','seven']], {}, :id=>"basket_size" %>
+  <%= f.select :meal_type, [['Breakfast','breakfast'],['Lunch','lunch'],['Dinner','dinner'],['Snack','snack'],['Dessert','dessert']], {}, :id=>"meal_type" %>
+  <%= f.submit "Start New Game"  %>
 <% end %>

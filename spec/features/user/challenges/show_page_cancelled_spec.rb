@@ -43,9 +43,9 @@ describe 'User ' do
 
     expect(current_path).to eq("/users/challenges/new")
 
-    fill_in 'time_limit', with: '20'
-    fill_in 'basket_size', with: '3'
-    fill_in 'meal_type', with: 'dinner'
+    select('20', :from => :time_limit)
+    select('Three Ingredients', :from => :basket_size)
+    select('Dinner', :from => :meal_type)
     click_on "Start New Game"
 
     game = Challenge.last
