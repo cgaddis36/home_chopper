@@ -101,7 +101,7 @@ $(document).ready(function(){
             document.getElementById("hour").innerHTML ='0'; 
             document.getElementById("minute").innerHTML ='0' ;  
             document.getElementById("second").innerHTML = '0'; 
-            window.location.href = "<%= root_path %>";
+            window.location.href = "<%= users_edit_path %>";
             } 
       }, 1000);
 
@@ -149,24 +149,6 @@ $(document).ready(function(){
         <%= submit_tag "Save Photo"  %>
       <% end %><br></h2>
       <h2><%= button_to "Don't Save a Photo", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "no_photo"}, method: :patch %></h2><br>
-    </main>
-
-  <% elsif @challenge.game_status == "complete" %>
-    <main class="game-complete-main">
-      <h1>Here Are Your Game Results!!</h1>
-      <h2>You had a <%= @challenge.time_limit %> minute challenge.</h2>
-      <h2>You were challenged to make a <%= @challenge.meal_type %>.</h2>
-      <h2>Your Mystery Basket Ingredients Were:</h2>
-      <% @challenge.ingredients.each do |ingredient|%>
-          <section id=final_ingredient-"<%= ingredient.id %>">
-            <h3><%= ingredient.name %></h3>
-          </section>
-          <% end %>
-      <h2><h2>Would you like play again with a fresh basket?</h2></h2>
-      <h2><%= button_to "Start New Game", "/users/#{current_user.id}/challenges/new", method: :get %></h2><br>
-      <h2>Would you like to change your pantry ingredients?</h2>
-      <h2><%= button_to "Your Pantry", "/users/#{current_user.id}/ingredients", method: :get %></h2>
-      <h2><%= button_to "Your Dashboard", "/users/#{current_user.id}/dashboard", method: :get %></h2>
     </main>
 
   <% else %>

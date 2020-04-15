@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get '/:user_id/challenges', to: 'challenges#index'
     get '/:user_id/challenges/:challenge_id', to: 'challenges#show'
     patch '/:user_id/challenges/:challenge_id/update', to: 'challenges#update'
+    get '/:user_id/challenges/:challenge_id/edit', to: 'challenges#edit', as: :edit
 
     get '/hints', to: 'games#hints'
     post '/:user_id/ratings', to: 'ratings#create'

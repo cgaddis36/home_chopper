@@ -23,6 +23,10 @@ class Users::ChallengesController < Users::BaseController
     @challenge = Challenge.find(params[:challenge_id])
   end
 
+  def edit
+    @challenge = Challenge.find(params[:challenge_id])
+  end
+
   def update
     @challenge = Challenge.find(params[:challenge_id])
     if params[:game_event] == "playing"
