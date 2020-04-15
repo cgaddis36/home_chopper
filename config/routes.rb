@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get '/:user_id/challenges/:challenge_id', to: 'challenges#show'
     patch '/:user_id/challenges/:challenge_id/update', to: 'challenges#update'
     post '/:user_id/ratings', to: 'ratings#create'
+    post '/challenges/:challenge_id', to: 'photos#create'
   end
 
   scope :users, module: :users do
