@@ -78,9 +78,11 @@
             <h3><%= ingredient.name %></h3>
           </section>
           <% end %>
-      <div style="width:400px; height:auto">
-          <%= link_to image_tag(Photo.last.image, style:'width:100%'), challenges_path %>
+      <% if !@challenge.photos.empty? %>
+        <div style="width:400px; height:auto">
+          <%= link_to image_tag(@challenge.photos.last.image, style:'width:100%'), challenges_path %>
         </div>
+      <% end %>
       <h2><h2>Would you like play again with a fresh basket?</h2></h2>
       <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
       <h2>Would you like to change your pantry ingredients?</h2>
