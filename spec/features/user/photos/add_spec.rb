@@ -26,9 +26,14 @@ RSpec.describe "After I finish my challenge" do
     click_on("I Finished Early!")
 
     challenge = @jake.challenges.first
+
     challenge.photos.new
     challenge.photos.first.image.attach(io: File.open('/Users/christophergaddis/turing/3module/projects/home_chopper/app/assets/images/foods/steak.jpeg'), filename: 'steak.jpeg')
     expect(challenge.photos.first.image.attached?).to be true
+    challenge.update!(game_status: 'complete')
 
+    visit "/users/challenges/#{challenge.id}"
+
+    expect(page).to have_css('#photos')
   end
 end
