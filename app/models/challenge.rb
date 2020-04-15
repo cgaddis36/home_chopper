@@ -56,7 +56,6 @@ class Challenge < ApplicationRecord
       ChallengeIngredient.create(challenge_id: self.id, ingredient_id: ingredient.id)
     end
   end
-<<<<<<< HEAD
 
   def check_rating_exists(user_id)
     Rating.where("user_id = #{user_id} and challenge_id = #{self.id}")[0]
@@ -69,6 +68,4 @@ class Challenge < ApplicationRecord
   def not_mine?(id)
     self.user != User.find(id)
   end
-=======
->>>>>>> 66bd00f37f993035f198270ff14e931325088a88
 end
