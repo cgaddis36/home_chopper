@@ -1,3 +1,5 @@
+# rubocop:disable Style/ClassAndModuleChildren
+
 class Users::BaseController < ApplicationController
   before_action :require_user
 
@@ -5,3 +7,5 @@ class Users::BaseController < ApplicationController
     render file: "/public/404" unless current_user
   end
 end
+
+# rubocop:enable Style/ClassAndModuleChildren

@@ -6,20 +6,20 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:name) }
   end
 
+  describe 'relationships' do
+    it { should have_many :challenges }
+    it { should have_many :ingredients }
+    it { should have_many(:challenge_ingredients).through(:challenges) }
+  end
+
   describe 'methods' do
     it "creates or updates itself from an oauth hash" do
-      auth = {
-        uid: "12345678910",
-        info: {
-          name: "Jack Black",
-          email: "jack@nothing.com"
-        },
-        credentials: {
-          token: "abcdefg12345",
-          refresh_token: "12345abcdefg",
-          expires_at: DateTime.now
-        }
-      }
+      auth = { uid: "12345678910",
+               info: { name: "Jack Black",
+                       email: "jack@nothing.com" },
+               credentials: { token: "abcdefg12345",
+                              refresh_token: "12345abcdefg",
+                              expires_at: DateTime.now } }
       User.update_or_create(auth)
       new_user = User.first
 
