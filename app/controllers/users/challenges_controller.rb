@@ -49,7 +49,7 @@ class Users::ChallengesController < Users::BaseController
     if params[:challenge]
       params.require(:challenge).permit(:time_limit, :basket_size, :meal_type)
     else
-      params.permit(:time_limit, :basket_size, :meal_type, :game_status, :challenge)
+      params.permit(:time_limit, :basket_size, :meal_type, :game_status)
     end
   end
 end
