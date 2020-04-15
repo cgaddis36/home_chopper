@@ -14,9 +14,9 @@ describe 'User ' do
   end
   # test is without a timer, so it defininitely needs to be revised after the timer is added
   it 'can finish a game' do
-    visit "/users/#{@bob.id}/challenges/#{@game.id}"
+    visit "/users/challenges/#{@game.id}"
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     expect(@game.game_status).to eq("before")
 
@@ -26,7 +26,7 @@ describe 'User ' do
 
     expect(@game.game_status).to eq("playing")
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     click_on "I Finished Early!"
 
@@ -34,7 +34,7 @@ describe 'User ' do
 
     expect(@game.game_status).to eq("done")
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
     expect(page).to have_content("Congratulations!")
     expect(page).to have_content("You did it! Share photo of your creation below!")
     expect(page).to have_button("Save Photo")
@@ -45,6 +45,6 @@ describe 'User ' do
 
     expect(@game.game_status).to eq("complete")
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
   end
 end

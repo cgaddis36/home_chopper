@@ -21,5 +21,9 @@ Rails.application.routes.draw do
     post '/:user_id/ratings', to: 'ratings#create'
   end
 
-  # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  scope :users, module: :users do
+    resources :ingredients, except: [:new, :show, :edit]
+    resources :challenges, except: :destroy
+    resources :ratings, only: :create
+  end
 end

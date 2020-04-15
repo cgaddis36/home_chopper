@@ -6,7 +6,7 @@
       <% @ingredients.each do |food| %>
         <section id= 'ingredient-<%=food.id%>'>
           <%= food.name %>
-          <%= button_to "Remove From Pantry", "/users/#{current_user.id}/ingredients/#{food.id}", method: :delete %>
+          <%= button_to "Remove From Pantry", "/users/ingredients/#{food.id}", method: :delete %>
          </section>
 
     <% end %></div>
@@ -15,7 +15,7 @@
   <section id="item_add">
     <h3>Add An Item To Your Pantry</h3>
 
-    <%= form_tag "/users/#{current_user.id}/ingredients", method: :post do %>
+    <%= form_tag "/users/ingredients", method: :post do %>
        <%= label_tag :name %>
        <%= text_field_tag :name%>
 
