@@ -19,30 +19,14 @@ describe 'User ' do
 
     expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
 
-    fill_in 'time_limit', with: '20'
-    fill_in 'basket_size', with: '3'
-    fill_in 'meal_type', with: 'dinner'
+    select('20', :from => :time_limit)
+    select('Five Ingredients', :from => :basket_size)
+    select('Dinner', :from => :meal_type)
+
     click_on "Start New Game"
 
     game = Challenge.last
 
     expect(game.game_status).to eq("before")
-  end
-
-  # probably won't need this with drop down boxes in the new form
-  it "can't create a new game with an empty field" do
-    visit "/users/#{@bob.id}/dashboard"
-
-    click_on 'Start New Game'
-
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
-
-    fill_in 'time_limit', with: ''
-    fill_in 'basket_size', with: '3'
-    fill_in 'meal_type', with: 'dinner'
-    click_on "Start New Game"
-
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
-    expect(page).to have_content("Time limit can't be blank")
   end
 end
