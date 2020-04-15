@@ -29,4 +29,18 @@
           <% end %><br>
     <% end %>
   </section>
+
+  <section id= '7ingredients'>
+    <h4>Seven Ingredient Challenges</h4>
+    <% Challenge.my_seven_ingredients(current_user).each do |challenge| %>
+      <section id= "challenge-<%="#{challenge.id}"%>">
+        <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
+        <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
+        <h5>Basket Size: <%= "#{challenge.basket_size}" %> ingredients</h5>
+        <h5>Challenge Ingredients</h5>
+          <% challenge.ingredients.each do |food| %>
+              <h6><%= food.name %></h6>
+          <% end %><br>
+    <% end %>
+  </section>
 </div>
