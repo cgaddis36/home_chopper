@@ -9,6 +9,7 @@ RSpec.describe Challenge, type: :model do
 
   describe 'relationships' do
     it { should belong_to :user }
+    it { should have_many :ratings }
     it { should have_many :challenge_ingredients }
     it { should have_many(:ingredients).through(:challenge_ingredients) }
   end
@@ -39,6 +40,7 @@ RSpec.describe Challenge, type: :model do
       ChallengeIngredient.create!(challenge_id: @jans_lunch.id, ingredient_id: @peanut_butter.id)
       ChallengeIngredient.create!(challenge_id: @jans_lunch.id, ingredient_id: @avacado.id)
       ChallengeIngredient.create!(challenge_id: @jans_lunch.id, ingredient_id: @lemon.id)
+      Rating.create!(user_id: @bob.id, challenge_id: @jans_lunch.id, stars: 3)
       @bobs_dinner = @bob.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "dinner", game_status: "complete")
       ChallengeIngredient.create!(challenge_id: @bobs_dinner.id, ingredient_id: @squid.id)
       ChallengeIngredient.create!(challenge_id: @bobs_dinner.id, ingredient_id: @blueberries.id)
@@ -73,7 +75,10 @@ RSpec.describe Challenge, type: :model do
 
   describe 'instance methods' do
     before(:each) do
+      @janis = User.create!(name: "Janice", email: "janice@sample.com", google_token: "678910", role: 0)
       @bob = User.create(name: "Bob", email: "bob@sample.com", google_token: "12345", role: 0)
+      @sally = User.create!(name: "Sally", email: "sally@sample.com", google_token: "6780", role: 0)
+      @tin_lee = User.create(name: "Tin Lee", email: "tin@sample.com", google_token: "1235", role: 0)
       @chocolate = @bob.ingredients.create(name: "Chocolate")
       @squid = @bob.ingredients.create(name: "Squid")
       @blueberries = @bob.ingredients.create(name: "Blueberries")
@@ -81,6 +86,12 @@ RSpec.describe Challenge, type: :model do
       @eggs = @bob.ingredients.create(name: "Eggs")
       @toast = @bob.ingredients.create(name: "Toast")
       @game = @bob.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "dinner")
+      @jans_breakfast = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast")
+      @jans_lunch = @janis.challenges.create!(time_limit: 20, basket_size: 5, meal_type: "lunch")
+      @rating_one = Rating.create!(user_id: @bob.id, challenge_id: @jans_breakfast.id, stars: 3)
+      @rating_two = Rating.create!(user_id: @sally.id, challenge_id: @jans_breakfast.id, stars: 5)
+      @rating_three = Rating.create!(user_id: @tin_lee.id, challenge_id: @jans_lunch.id, stars: 2)
+      @rating_four = Rating.create!(user_id: @bob.id, challenge_id: @jans_lunch.id, stars: 5)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
     end
 
@@ -128,6 +139,21 @@ RSpec.describe Challenge, type: :model do
       @game.game_complete
 
       expect(@game.game_status).to eq("complete")
+    end
+
+    it "can check to see if a user already has rated a challenge" do
+      expect(@jans_breakfast.check_rating_exists(@bob.id)).to eq(@rating_one)
+      expect(@game.check_rating_exists(@bob.id)).to eq(nil)
+    end
+
+    it "can find the average rating for a challenge" do
+      expect(@jans_breakfast.ave_rating).to eq(4)
+      expect(@jans_lunch.ave_rating).to eq(3.5)
+    end
+
+    it "can see if a challenge belongs to a user" do
+      expect(@jans_breakfast.not_mine?(@bob.id)).to eq(true)
+      expect(@game.not_mine?(@bob.id)).to eq(false)
     end
   end
 end
