@@ -34,7 +34,7 @@ describe 'User ' do
 
     expect(page).to have_content("You're making #{@game.meal_type}")
     expect(page).to have_content("Here are your mystery basket contents!")
-    # having trouble with test recognizing targeted sections.  Hashed out until I can find another set of eyes to help. maybe I'm missing something.
+    # # TODO: having trouble with test recognizing targeted sections.  Hashed out until I can find another set of eyes to help. maybe I'm missing something.
 
     # within "#ingredient-#{first_ingredient.id}" do
     expect(page).to have_content("#{contents[0].name}")

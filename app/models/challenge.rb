@@ -8,6 +8,7 @@ class Challenge < ApplicationRecord
   belongs_to :user
   has_many :challenge_ingredients
   has_many :ingredients, through: :challenge_ingredients
+  has_many :ratings
 
   def self.three_ingredients
     where('basket_size = 3').where("game_status = '5'").order(created_at: :DESC)
@@ -25,24 +26,28 @@ class Challenge < ApplicationRecord
     where('basket_size = 5').where("game_status = '5'").where("user_id = #{user.id}").order(created_at: :DESC)
   end
 
+  def self.top_challenges
+    Challenge.joins(:ratings).group(:id).select('challenges.*, AVG(stars) AS AverageRating').order('AverageRating').limit(3)
+  end
+
   def start_game
-    self.update_column("game_status", "playing")
+    update_column("game_status", "playing")
   end
 
   def pause_game
-    self.update_column("game_status", "paused")
+    update_column("game_status", "paused")
   end
 
   def cancel_game
-    self.update_column("game_status", "cancelled")
+    update_column("game_status", "cancelled")
   end
 
   def finalize_game
-    self.update_column("game_status", "done")
+    update_column("game_status", "done")
   end
 
   def game_complete
-    self.update_column("game_status", "complete")
+    update_column("game_status", "complete")
   end
 
   def basket_contents
@@ -50,5 +55,17 @@ class Challenge < ApplicationRecord
     contents.each do |ingredient|
       ChallengeIngredient.create(challenge_id: self.id, ingredient_id: ingredient.id)
     end
+  end
+
+  def check_rating_exists(user_id)
+    Rating.where("user_id = #{user_id} and challenge_id = #{self.id}")[0]
+  end
+
+  def ave_rating
+    ratings.average(:stars).to_f.round(1)
+  end
+
+  def not_mine?(id)
+    self.user != User.find(id)
   end
 end

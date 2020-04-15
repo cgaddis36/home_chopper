@@ -1,2 +1,31 @@
+
 <center>
+  <main class="game-main">
+    <h1>Game Results</h1>
+
+    <h2>Game # <%= "#{@challenge.id}" %></h2>
+    <h2><%= "#{@challenge.user.name}" %> took <%= @challenge.time_limit %> minutes.</h2>
+    <h2><%= "#{@challenge.user.name}" %> was challenged to make a <%= @challenge.meal_type %>.</h2>
+    <h2><%= "#{@challenge.user.name}" %>'s Basket Size: <%= @challenge.basket_size %>.</h2>
+    <h2>Their Mystery Basket Ingredients Were:</h2>
+    <% @challenge.ingredients.each do |ingredient|%>
+        <section id=final_ingredient-"<%= ingredient.id %>">
+          <h3><%= ingredient.name %></h3>
+        </section>
+    <% end %>
+
+      <section id= 'reviews'>
+        <h2> Average Rating of This Challenge: <%= @challenge.ave_rating %> </h2><br>
+        <% if !@challenge.check_rating_exists(current_user.id) && @challenge.not_mine?(current_user.id) %>
+          <h2> Submit a Review For This Challenge </h2>
+            <%= form_tag "/users/#{current_user.id}/ratings", method: :post do %>
+            <%= label_tag :stars %>
+            <%= select_tag "stars", options_for_select(1..5) %>
+            <%= label_tag :challenge %>
+            <%= hidden_field_tag "challenge_id", @challenge.id  %>
+            <%= submit_tag "Submit Review"  %>
+            <% end %>
+        <% end %>
+    </section>
+  </main>
 </center>
