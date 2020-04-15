@@ -7,6 +7,7 @@ class Challenge < ApplicationRecord
 
   belongs_to :user
   has_many :challenge_ingredients
+  has_many :photos
   has_many :ingredients, through: :challenge_ingredients
   has_many :ratings
 
