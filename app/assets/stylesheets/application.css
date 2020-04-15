@@ -108,20 +108,13 @@ h1{
 #clockdiv div > span{ 
   padding: 15px; 
     border-radius: 3px; 
-    background: #00816A; 
+    background: rgb(0, 114, 129); 
     display: inline-block; 
 } 
 .smalltext{ 
   padding-top: 5px; 
     font-size: 16px; 
 } 
-#hidden {
-  display: none;
-}
-
-#unhidden {
-  font-style: italic;
-}
 
 input[type="button"], input[type="submit"] {
   display: inline-block;
