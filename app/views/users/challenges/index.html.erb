@@ -10,7 +10,7 @@
         <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
         <h5>Basket Size: <%= "#{challenge.basket_size}" %> ingredients</h5>
         <h5>Challenge Ingredients</h5>
-          <% challenge.which_ingredients.each do |food| %>
+          <% challenge.ingredients.each do |food| %>
               <h6><%= food.name %></h6>
           <% end %><br>
     <% end %>
@@ -24,7 +24,7 @@
         <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
         <h5>Basket Size: <%= "#{challenge.basket_size}" %> ingredients</h5>
         <h5>Challenge Ingredients</h5>
-          <% challenge.which_ingredients.each do |food| %>
+          <% challenge.ingredients.each do |food| %>
               <h6><%= food.name %></h6>
           <% end %><br>
     <% end %>
