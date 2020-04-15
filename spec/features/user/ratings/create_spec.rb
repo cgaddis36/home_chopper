@@ -99,4 +99,12 @@ RSpec.describe "ratings" do
     expect(page).to have_button("#{@bobs_dinner.id}")
     expect(page).to have_button("#{@javiers_snack.id}")
   end
+
+  it "cannot see a place to leave a review if it belongs to that user" do
+
+    visit "/challenges/#{@javiers_snack.id}"
+
+    expect(page).to_not have_content("Submit a Review For This Challenge")
+    expect(page).to_not have_content("Average Rating of This Challenge: 3.0")
+  end
 end
