@@ -25,7 +25,9 @@ RSpec.describe "After I finish my challenge" do
 
     click_on("I Finished Early!")
 
-    click_on("Upload Photos")
+    find("#photo").click
+
+
 
     save_and_open_page
 

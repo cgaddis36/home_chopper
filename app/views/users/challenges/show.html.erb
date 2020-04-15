@@ -80,6 +80,7 @@
             <h3><%= ingredient.name %></h3>
           </section>
           <% end %>
+      <%= image_tag(@challenge.photo) %>
       <h2><h2>Would you like play again with a fresh basket?</h2></h2>
       <h2><%= button_to "Start New Game", "/users/#{current_user.id}/challenges/new", method: :get %></h2><br>
       <h2>Would you like to change your pantry ingredients?</h2>
