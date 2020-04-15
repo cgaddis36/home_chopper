@@ -12,11 +12,24 @@
 
   <section id= '3ingredients'>
     <h4>Three Ingredient Challenges</h4>
+<<<<<<< HEAD
       <% Challenge.three_ingredients.each do |challenge| %>
         <section id= 'challenge-<%="#{challenge.id}"%>'>
           <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
           <h4>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h4>
       <% end %>
+=======
+    <% Challenge.three_ingredients.each do |challenge| %>
+      <section id= "challenge-<%="#{challenge.id}"%>">
+        <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
+        <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
+        <h5>Basket Size: <%= "#{challenge.basket_size}" %> ingredients</h5>
+        <h5>Challenge Ingredients</h5>
+          <% challenge.ingredients.each do |food| %>
+              <h6><%= food.name %></h6>
+          <% end %><br>
+    <% end %>
+>>>>>>> 66bd00f37f993035f198270ff14e931325088a88
   </section>
 
   <section id= '5ingredients'>
@@ -25,6 +38,16 @@
       <section id= 'challenge-<%="#{challenge.id}"%>'>
         <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
         <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
+<<<<<<< HEAD
       <% end %>
+=======
+        <h5>Cooking Time: <%= "#{challenge.time_limit}" %> minutes</h5>
+        <h5>Basket Size: <%= "#{challenge.basket_size}" %> ingredients</h5>
+        <h5>Challenge Ingredients</h5>
+          <% challenge.ingredients.each do |food| %>
+              <h6><%= food.name %></h6>
+          <% end %><br>
+    <% end %>
+>>>>>>> 66bd00f37f993035f198270ff14e931325088a88
   </section>
 </div>
