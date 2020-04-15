@@ -26,9 +26,9 @@ RSpec.describe "After I finish my challenge" do
     click_on("I Finished Early!")
 
     challenge = @jake.challenges.first
-    require "pry"; binding.pry
-    challenge.photos.attach(io: File.open('/Users/christophergaddis/turing/3module/projects/home_chopper/app/assets/images/foods/steak.jpeg'), filename: 'steak.jpeg')
-    save_and_open_page
+    challenge.photos.new
+    challenge.photos.first.image.attach(io: File.open('/Users/christophergaddis/turing/3module/projects/home_chopper/app/assets/images/foods/steak.jpeg'), filename: 'steak.jpeg')
+    expect(challenge.photos.first.image.attached?).to be true
 
   end
 end
