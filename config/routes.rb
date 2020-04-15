@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   scope :users, module: :users do
     resources :ingredients, except: [:new, :show, :edit]
-    resources :challenges, except: [:edit, :destroy]
+    resources :challenges, except: :destroy
     resources :ratings, only: :create
   end
 end
