@@ -1,0 +1,18 @@
+
+<main class="game-complete-main">
+  <h1>Here Are Your Game Results!!</h1>
+  <h2>You had a <%= @challenge.time_limit %> minute challenge.</h2>
+  <h2>You were challenged to make a <%= @challenge.meal_type %>.</h2>
+  <h2>Your Mystery Basket Ingredients Were:</h2>
+  <% @challenge.ingredients.each do |ingredient|%>
+      <section id=final_ingredient-"<%= ingredient.id %>">
+        <h3><%= ingredient.name %></h3>
+      </section>
+      <% end %>
+  <h2><h2>Would you like play again with a fresh basket?</h2></h2>
+  <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
+  <h2>Would you like to change your pantry ingredients?</h2>
+  <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
+  <h2><%= button_to "Your Dashboard", "/users/dashboard", method: :get %></h2>
+</main>
+
