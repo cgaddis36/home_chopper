@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/', to: 'welcome#index'
   get '/auth/google_oauth2', as: :google_oauth2
   get '/auth/google_oauth2/callback', to: 'sessions#create'
@@ -18,5 +17,10 @@ Rails.application.routes.draw do
     patch '/:user_id/challenges/:challenge_id/update', to: 'challenges#update'
     post '/:user_id/ratings', to: 'ratings#create'
   end
-  # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  scope :users, module: :users do
+    resources :ingredients, except: [:new, :show, :edit]
+    resources :challenges, except: :destroy
+    resources :ratings, only: :create
+  end
 end

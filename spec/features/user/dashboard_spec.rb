@@ -25,7 +25,7 @@ RSpec.describe 'as a user' do
 
       click_on "Pantry"
 
-      expect(current_path).to eq("/users/#{bob.id}/ingredients")
+      expect(current_path).to eq("/users/ingredients")
     end
   end
 end

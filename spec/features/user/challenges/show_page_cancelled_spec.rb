@@ -11,9 +11,9 @@ describe 'User ' do
   end
 
   it 'can play a game' do
-    visit "/users/#{@bob.id}/challenges/#{@game.id}"
+    visit "/users/challenges/#{@game.id}"
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     expect(@game.game_status).to eq("before")
 
@@ -23,7 +23,7 @@ describe 'User ' do
 
     expect(@game.game_status).to eq("playing")
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     click_on "Cancel Game"
 
@@ -31,7 +31,7 @@ describe 'User ' do
 
     expect(@game.game_status).to eq("cancelled")
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     expect(page).to have_content("This game has been cancelled.")
     expect(page).to have_content("Would you like to try again with a fresh basket?")
@@ -41,7 +41,7 @@ describe 'User ' do
 
     click_on 'Start New Game'
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
+    expect(current_path).to eq("/users/challenges/new")
 
     select('20', from: :time_limit)
     select('Three Ingredients', from: :basket_size)

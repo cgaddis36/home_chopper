@@ -55,11 +55,11 @@ RSpec.describe 'User ' do
     expect(@jans_breakfast.game_status).to eq("complete")
     expect(@jans_lunch.game_status).to eq("complete")
 
-    visit "/users/#{@janis.id}/challenges"
+    visit "/users/challenges"
 
     expect(page).to_not have_link(@jans_second_breakfast.id)
 
-    expect(current_path).to eq("/users/#{@janis.id}/challenges")
+    expect(current_path).to eq("/users/challenges")
     expect(page).to have_content("My Solo Challenges")
     within "#3ingredients" do
       within "#challenge-#{@jans_breakfast.id}" do
