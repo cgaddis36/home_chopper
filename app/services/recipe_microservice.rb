@@ -5,13 +5,20 @@ class RecipeMicroservice
     end
       get_json(response)
   end
-
+  #
   # def get_recipe_instructions(id)
-  #   response = conn.get('') do |req|
+  #   response = conn.get('/recipe-instructions') do |req|
   #     req.params['id'] = id
   #   end
   #   get_json(response)
   # end
+
+  def get_recipe_info(id)
+    response = conn.get('/recipe-information') do |req|
+      req.params['id'] = id
+    end
+    get_json(response)
+  end
 
  private
 
