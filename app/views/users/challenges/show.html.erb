@@ -7,7 +7,7 @@
     <% if current_user %>
       <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
       <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
-      <li class="right"><%= link_to "Pantry", "/users/#{current_user.id}/ingredients", method: :get%></li>
+      <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
     <% else %>
       <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
     <% end %>
@@ -68,12 +68,6 @@ $(document).ready(function(){
 <p id="demo"></p> 
 
 <script>
-  function myFunction() {
-    document.querySelector("#navbar").setAttribute("id", "hidden"); 
-  }
-</script>
-
-<script>
   var submitButton = document.querySelector("#hide")
 
   submitButton.addEventListener('click', () => {
@@ -101,7 +95,7 @@ $(document).ready(function(){
             document.getElementById("hour").innerHTML ='0'; 
             document.getElementById("minute").innerHTML ='0' ;  
             document.getElementById("second").innerHTML = '0'; 
-            window.location.href = "<%= root_path %>";
+            window.location.href = "<%= edit_challenge_path %>";
             } 
       }, 1000);
 
@@ -125,8 +119,8 @@ $(document).ready(function(){
     <br><br><br>
     <%= button_to "Recipe Book", "/users/hints", method: :get %><br><br><br>
         
-    <%= button_to "Cancel Game", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "cancel"}, method: :patch %><br><br><br>
-    <%= button_to "I Finished Early!", "/users/#{current_user.id}/challenges/#{@challenge.id}/update", params: {game_event: "done"}, method: :patch %><br><br><br>
+    <%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}/update", params: {game_event: "cancel"}, method: :patch %><br><br><br>
+    <%= button_to "I Finished Early!", edit_challenge_path, method: :get%><br><br><br>
 </div>
 
   <% elsif @challenge.game_status == "cancelled" %>
@@ -166,6 +160,6 @@ $(document).ready(function(){
       <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
       <h2>Would you like to change your pantry ingredients?</h2>
       <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
-      <h2><%= button_to "Your Dashboard", "/users/dashboard", method: :get %></h2>
+      <h2><%= button_to "Your Dashboard", "/users/#{current_user.id}/dashboard", method: :get %></h2>
     </main>
 <% end %>
