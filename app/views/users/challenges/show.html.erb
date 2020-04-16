@@ -65,15 +65,6 @@ $(document).ready(function(){
 <p id="demo"></p>
 
 <script>
-<<<<<<< HEAD
-=======
-  function myFunction() {
-    document.querySelector("#navbar").setAttribute("id", "hidden");
-  }
-</script>
-
-<script>
->>>>>>> 96c87af9eff1a4692704e7e4446e129f0720d4ee
   var submitButton = document.querySelector("#hide")
 
   submitButton.addEventListener('click', () => {
@@ -82,7 +73,6 @@ $(document).ready(function(){
     var personInput = (Number(num)*60) * 1000
 
     var deadline = new Date(Date.now() + personInput).getTime();
-<<<<<<< HEAD
     var x = setInterval(function() { 
       
       var now = new Date().getTime(); 
@@ -104,29 +94,6 @@ $(document).ready(function(){
             document.getElementById("second").innerHTML = '0'; 
             window.location.href = "<%= edit_challenge_path %>";
             } 
-=======
-    var x = setInterval(function() {
-
-      var now = new Date().getTime();
-
-    var t = deadline - now;
-
-    var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
-    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((t % (1000 * 60)) / 1000);
-
-    document.getElementById("hour").innerHTML =hours;
-    document.getElementById("minute").innerHTML = minutes;
-    document.getElementById("second").innerHTML =seconds;
-    if (t < 0) {
-      clearInterval(x);
-            document.getElementById("demo").innerHTML = "TIME'S UP";
-            document.getElementById("hour").innerHTML ='0';
-            document.getElementById("minute").innerHTML ='0' ;
-            document.getElementById("second").innerHTML = '0';
-            window.location.href = "<%= edit_challenge_path %>";
-            }
->>>>>>> 96c87af9eff1a4692704e7e4446e129f0720d4ee
       }, 1000);
 
     })
@@ -195,9 +162,5 @@ $(document).ready(function(){
       <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
       <h2>Would you like to change your pantry ingredients?</h2>
       <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
-<<<<<<< HEAD
-      <h2><%= button_to "Your Dashboard", "/users/#{current_user.id}/dashboard", method: :get %></h2>
-=======
->>>>>>> 96c87af9eff1a4692704e7e4446e129f0720d4ee
     </main>
 <% end %>
