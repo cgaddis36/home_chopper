@@ -27,11 +27,13 @@
       <% end %>
     </ul>
   <% end %>
+  <div id="thebody">
   <center>
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
     <% end -%>
     <%= yield %>
   </center>
+  </div>
   </body>
 </html>

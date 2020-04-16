@@ -142,3 +142,8 @@ input[type="button"], input[type="submit"] {
 .playing {
           display: none;
 }
+
+#thebody {
+      padding-left: 100px;
+      padding-right: 100px;
+}
