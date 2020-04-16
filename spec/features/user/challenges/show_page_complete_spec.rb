@@ -13,8 +13,8 @@ describe 'User ' do
     @contents = @game.ingredients
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
-  # test is without a timer, so it defininitely needs to be revised after the timer is added
-  it 'can complete a game' do
+
+  it 'can complete a game', :js do
     visit "/users/challenges/#{@game.id}"
     click_on "Let's Get Choppin'!"
     click_on "I Finished Early!"
@@ -30,7 +30,7 @@ describe 'User ' do
     expect(@game.game_status).to eq("complete")
 
     expect(current_path).to eq("/users/challenges/#{@game.id}")
-    expect(page).to have_content("Here Are Your Game Results!")
+    expect(page).to have_content("Here Are Your Game Results:")
     expect(page).to have_content("You had a #{@game.time_limit} minute challenge.")
     expect(page).to have_content("You were challenged to make a #{@game.meal_type}")
     expect(page).to have_content("Your Mystery Basket Ingredients Were:")
@@ -41,6 +41,5 @@ describe 'User ' do
     expect(page).to have_button("Start New Game")
     expect(page).to have_content("Would you like to change your pantry ingredients?")
     expect(page).to have_button("Your Pantry")
-    expect(page).to have_button("Your Dashboard")
   end
 end

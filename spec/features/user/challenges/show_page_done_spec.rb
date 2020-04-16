@@ -13,12 +13,12 @@ describe 'User ' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
   # test is without a timer, so it defininitely needs to be revised after the timer is added
-  it 'can finish a game' do
+  it 'can finish a game', :js do
     visit "/users/challenges/#{@game.id}"
 
     expect(current_path).to eq("/users/challenges/#{@game.id}")
 
-    expect(@game.game_status).to eq("before")
+    expect(@game.game_status).to eq("playing")
 
     click_on "Let's Get Choppin'!"
 
