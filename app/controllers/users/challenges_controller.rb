@@ -39,10 +39,6 @@ class Users::ChallengesController < Users::BaseController
     redirect_to "/users/challenges/#{@challenge.id}"
   end
 
-  def edit
-    @challenge = Challenge.find(params[:id])
-  end
-
   private
 
   def challenge_params
