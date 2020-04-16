@@ -14,7 +14,7 @@ RSpec.describe "After I finish my challenge" do
   it "I can upload a picture of my meal " do
     visit "/users/#{@jake.id}/dashboard"
 
-    click_on("Start New Game")
+    find("#starter").click
 
     select('20', :from => :time_limit)
     select('Three Ingredients', :from => :basket_size)

@@ -32,8 +32,8 @@ describe 'User ' do
 
     expect(contents.count).to eq(3)
 
-    expect(page).to have_content("You're making #{@game.meal_type}")
-    expect(page).to have_content("Here are your mystery basket contents!")
+    expect(page).to have_content("#{@game.meal_type.capitalize} Challenge")
+    expect(page).to have_content("Mystery Basket Ingredients:")
     # # TODO: having trouble with test recognizing targeted sections.  Hashed out until I can find another set of eyes to help. maybe I'm missing something.
 
     # within "#ingredient-#{first_ingredient.id}" do

@@ -35,8 +35,9 @@ describe 'User ' do
     expect(@game.game_status).to eq("done")
 
     expect(current_path).to eq("/users/challenges/#{@game.id}")
-    expect(page).to have_content("Congratulations!")
-    expect(page).to have_content("You did it! Share photo of your creation below!")
+    expect(page).to have_content("Congratulations!!")
+    expect(page).to have_content("Hope it tastes better than it looks!")
+    expect(page).to have_content("Share photo of your creation below!")
     expect(page).to have_button("Save Photo")
 
     click_on "Don't Save a Photo"

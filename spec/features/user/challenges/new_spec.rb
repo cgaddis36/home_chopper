@@ -14,8 +14,7 @@ describe 'User ' do
 
   it 'can create a new game' do
     visit "/users/#{@bob.id}/dashboard"
-
-    click_on 'Start New Game'
+    find("#starter").click
 
     expect(current_path).to eq("/users/challenges/new")
 

@@ -60,7 +60,7 @@ RSpec.describe "ratings" do
 
     visit "/users/#{@javier.id}/dashboard"
 
-    click_on "See All Challenges"
+    find("#challenger").click
 
     expect(current_path).to eq("/challenges")
     expect(page).to have_content("Top 3 Rated Challenges")

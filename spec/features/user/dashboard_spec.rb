@@ -8,7 +8,7 @@ RSpec.describe 'as a user' do
 
       visit "/users/#{bob.id}/dashboard"
 
-      expect(page).to have_button("Start New Game")
+      expect(page).to have_css("#starter")
     end
 
     it "can not visit dashboard if not logged in" do
