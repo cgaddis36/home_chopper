@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  get '/', to: 'welcome#index'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/', to: 'welcome#index', as: :root
   get '/auth/google_oauth2', as: :google_oauth2
   get '/auth/google_oauth2/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :challenges, only: [:index, :show]
 
-  get '/users/:user_id/dashboard', to: 'users/dashboard#index'
+  namespace :users do
+    get '/:user_id/dashboard', to: 'dashboard#index'
+    get '/hints', to: 'games#hints'
+  end
 
   scope :users, module: :users do
     resources :ingredients, except: [:new, :show, :edit]

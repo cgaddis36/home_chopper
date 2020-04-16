@@ -12,7 +12,7 @@ describe 'User ' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
 
-  it 'can create a new game' do
+  it 'can create a new game', :js do
     visit "/users/#{@bob.id}/dashboard"
     find("#starter").click
 
@@ -26,6 +26,6 @@ describe 'User ' do
 
     game = Challenge.last
 
-    expect(game.game_status).to eq("before")
+    expect(game.game_status).to eq("playing")
   end
 end

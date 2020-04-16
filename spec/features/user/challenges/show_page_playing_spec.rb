@@ -13,14 +13,12 @@ describe 'User ' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
 
-  it 'can play a game' do
+  it 'can play a game', :js do
     visit "/users/challenges/#{@game.id}"
 
     expect(current_path).to eq("/users/challenges/#{@game.id}")
 
-    expect(@game.game_status).to eq("before")
-
-    click_on "Let's Get Choppin'!"
+    click_button "Let's Get Choppin'!"
 
     @game.reload
 
@@ -47,7 +45,7 @@ describe 'User ' do
     expect(page).to have_content("#{contents[2].name}")
     # end
 
-    expect(page).to have_button("Pause Game")
     expect(page).to have_button("Cancel Game")
+    expect(page).to have_button("I Finished Early!")
   end
 end

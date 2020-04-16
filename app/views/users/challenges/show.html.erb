@@ -1,48 +1,132 @@
-<center>
-  <h1>Solo Challenge!</h1>
-</center>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <% if @challenge.game_status == "before" %>
-<center>
-    <main class="game-info-main">
-      <h2> <%="#{@challenge.basket_size}"%> Ingredients </h2>
-      <h2> <%="#{@challenge.time_limit}"%> Minutes</h2>
-      <h2>Can You Handle The Heat?</h2>
-      <h2><%= button_to "Let's Get Choppin'!", "/users/challenges/#{@challenge.id}", params: {game_event: "playing"}, method: :patch %></h2>
-      <iframe src="https://giphy.com/embed/l2SqeoNIBb432sF44" width="480" height="330" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-    </main>
-</center>
+<div id="navbar">
+  <ul class="topnav">
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="#friends">Friends</a></li>
+    <% if current_user %>
+      <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
+      <li class="new-one"><%= link_to "Start New Game", "/users/challenges/new", method: :get %></li>
+      <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
+      <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
+    <% else %>
+      <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
+    <% end %>
+  </ul>
+</div>
 
-  <% elsif @challenge.game_status == "playing" %>
-  <center>
-    <main class="game-play-main">
-      <%= audio_tag "1-03 Love Tractor.mp3", id: "sound", class: "ausio-to-play", autoplay: true %>
-      <h2><%="#{@challenge.meal_type.capitalize}"%> Challenge</h2>
-      <h1>Mystery Basket Ingredients:</h1>
-      <h2><% @challenge.basket_contents.each do |ingredient|%></h2>
-          <section id=ingredient-"<%= ingredient.id %>">
-            <h2><%= ingredient.name %></h2>
-          </section>
-          <% end %>
-          <iframe src="https://giphy.com/embed/demgpwJ6rs2DS" width="480" height="359" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-      <h2><%= button_to "Pause Game", "/users/challenges/#{@challenge.id}", params: {game_event: "pause"}, method: :patch %></h2>
-      <h2><%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}", params: {game_event: "cancel"}, method: :patch %></h2>
-      <h2><%= button_to "I Finished Early!", "/users/challenges/#{@challenge.id}", params: {game_event: "done"}, method: :patch %></h2>
-    </main>
-  </center>
+<% if @challenge.game_status == "playing" %>
+<h1>Solo Challenge!</h1>
+<div id="playing">
+  <main class="game-info-main">
+    <h2>This is a solo game.  You race against the clock to build a fabulous dish using all the items in your mystery basket.</h2>
+    <h2>As soon as you click "Let's Get Choppin'!", Your basket contents will be revealed, your timer will start, and the game will begin!</h2>
+    <h2> Your basket will have <%="#{@challenge.basket_size}"%> random ingredients in it.</h2>
+    <h2> You're making <%="#{@challenge.meal_type}"%> in this challenge.</h2>
+    <h2> You will have <%="#{@challenge.time_limit}"%> minutes to cook.</h2>
+    <button onclick="myFunction()" id="hide">Let's Get Choppin'!</button>
+  </main>
+</div>
 
-  <% elsif @challenge.game_status == "paused" %>
-  <center>
-    <main class="game-paused-main">
-      <h2>You're making <%="#{@challenge.meal_type}"%>!</h2>
-      <h2><%= button_to "Resume Game", "/users/challenges/#{@challenge.id}", params: {game_event: "playing"}, method: :patch %></h2>
-      <h2><%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}", params: {game_event: "cancel"}, method: :patch %></h2>
-      <h1>Game Paused</h1>
-    </main>
-  </center>
+<script>
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("#navbar").hide();
+    $("#divPlaying").show();
+  });
+});
+</script>
+
+<div id="divPlaying" style="display: none;">
+    <h2>You're making <%="#{@challenge.meal_type}"%>!</h2>
+    <h1>Here are your mystery basket contents!</h1>
+    <h2><% @challenge.basket_contents.each do |ingredient|%></h2>
+      <section id=ingredient-"<%= ingredient.id %>">
+        <h2><%= ingredient.name %></h2>
+      </section>
+    <% end %>
+
+<h3>Countdown Clock</h3>
+<div id="clockdiv">
+  <div>
+    <span class="hours" id="hour"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span class="minutes" id="minute"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span class="seconds" id="second"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>
+
+<p id="demo"></p>
+
+<script>
+  function myFunction() {
+    document.querySelector("#navbar").setAttribute("id", "hidden");
+  }
+</script>
+
+<script>
+  var submitButton = document.querySelector("#hide")
+
+  submitButton.addEventListener('click', () => {
+
+    var num = "<%="#{@challenge.time_limit}"%>"
+    var personInput = (Number(num)*60) * 1000
+
+    var deadline = new Date(Date.now() + personInput).getTime();
+    var x = setInterval(function() {
+
+      var now = new Date().getTime();
+
+    var t = deadline - now;
+
+    var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+    document.getElementById("hour").innerHTML =hours;
+    document.getElementById("minute").innerHTML = minutes;
+    document.getElementById("second").innerHTML =seconds;
+    if (t < 0) {
+      clearInterval(x);
+            document.getElementById("demo").innerHTML = "TIME'S UP";
+            document.getElementById("hour").innerHTML ='0';
+            document.getElementById("minute").innerHTML ='0' ;
+            document.getElementById("second").innerHTML = '0';
+            window.location.href = "<%= edit_challenge_path %>";
+            }
+      }, 1000);
+
+    })
+    </script>
+    <br><br>
+
+    <button id="hintButton">Request Recipe Hints</button><br><br>
+      <div id="hints" style="display: none;">
+      Hints<br><br>
+      ALL the Hints<br><br>
+      HINTS ON HINTS
+      </div>
+    <script>
+      $(document).ready(function(){
+        $("#hintButton").click(function(){
+          $("#hints").show();
+        });
+      });
+    </script>
+    <br><br><br>
+    <%= button_to "Recipe Book", "/users/hints", method: :get %><br><br><br>
+    <%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}", params: {game_event: "cancel"}, method: :patch %>
+    <%= button_to "I Finished Early!", "/users/challenges/#{@challenge.id}/edit", method: :get %>
+</div>
 
   <% elsif @challenge.game_status == "cancelled" %>
-  <center>
+    <h1>Solo Challenge!</h1>
     <main class="game-cancelled-main">
       <h2>This game has been cancelled.</h2>
       <h2>Click here for recipe ideas using your basket ingredients.</h2>
@@ -51,25 +135,8 @@
       <h2>Would you like to change your pantry ingredients?</h2>
       <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
     </main>
-  </center>
-
-  <% elsif @challenge.game_status == "done" %>
-  <center>
-    <main class="game-done-main">
-      <h2>Congratulations!!</h2>
-      <h2>Hope it tastes better than it looks! </br>
-        Share photo of your creation below!</h2>
-      <h2><%= form_with url: photos_path, model: @photo, local: true do |form| %>
-            <%= form.label :image %>
-            <%= form.file_field :image %>
-            <%= submit_tag "Save Photo"  %>
-          <% end %><br></h2>
-      <h2><%= button_to "Don't Save a Photo", "/users/challenges/#{@challenge.id}", params: {game_event: "no_photo"}, method: :patch %></h2><br>
-    </main>
-  </center>
 
   <% elsif @challenge.game_status == "complete" %>
-  <center>
     <main class="game-complete-main">
       <h1>Here Are Your Game Results!!</h1>
       <h2>Time: <%= @challenge.time_limit %> Minutes</h2>
@@ -89,7 +156,5 @@
       <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
       <h2>Update Pantry?</h2>
       <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
-      <h2><%= button_to "Your Dashboard", "/users/dashboard", method: :get %></h2>
     </main>
-  </center>
-  <% end %>
+<% end %>
