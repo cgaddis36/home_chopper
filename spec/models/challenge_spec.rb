@@ -137,10 +137,6 @@ RSpec.describe Challenge, type: :model do
 
     it "can change the challenge status to complete" do
       expect(@game.game_status).to eq("playing")
-    end
-
-    it "can change the challenge status to complete" do
-      expect(@game.game_status).to eq("playing")
 
       @game.game_complete
 
