@@ -50,7 +50,7 @@ RSpec.describe 'User ' do
     @jans_lunch.game_complete
     @jans_lunch.reload
 
-    expect(@jans_second_breakfast.game_status).to eq("before")
+    expect(@jans_second_breakfast.game_status).to eq("playing")
     expect(@bobs_snack.game_status).to eq("complete")
     expect(@bobs_dinner.game_status).to eq("complete")
     expect(@jans_breakfast.game_status).to eq("complete")
