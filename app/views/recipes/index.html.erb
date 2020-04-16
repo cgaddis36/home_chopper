@@ -1,0 +1,9 @@
+<h1>Here Are a Couple Recipes You Might Like</h1>
+  <% @recipes.each do |recipe| %>
+    <class id="recipe"><%= recipe[:title] %>>
+      <h4> uses the following ingredients:</h4>
+        <% recipe[:missedIngredients].each do |ingredient| %>
+          <p><%= recipe[:originalString] %></p>
+        <% end %>
+  <% end %>
+  </class>

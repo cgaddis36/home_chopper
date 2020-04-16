@@ -1,0 +1,33 @@
+<div id="navbar">
+  <ul class="topnav">
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="#friends">Friends</a></li>
+    <% if current_user %>
+      <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
+      <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
+      <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
+    <% else %>
+      <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
+    <% end %>
+  </ul>
+</div>
+
+<h1>Recipe Search</h1>
+<h2>Enter 1 - 7 Ingredients</h2>
+<h2><%= form_tag :recipes, method: :get do %>
+      <%= label_tag :ingredient_1 %>
+      <%= text_field_tag :ingredient_1 %>
+      <%= label_tag :ingredient_2 %>
+      <%= text_field_tag :ingredient_2 %>
+      <%= label_tag :ingredient_3 %>
+      <%= text_field_tag :ingredient_3 %>
+      <%= label_tag :ingredient_4 %>
+      <%= text_field_tag :ingredient_4 %>
+      <%= label_tag :ingredient_5 %>
+      <%= text_field_tag :ingredient_5 %>
+      <%= label_tag :ingredient_6 %>
+      <%= text_field_tag :ingredient_6 %>
+      <%= label_tag :ingredient_7 %>
+      <%= text_field_tag :ingredient_7 %>
+      <%= submit_tag "Find Recipes"  %>
+    <% end %><br></h2>
