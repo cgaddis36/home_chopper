@@ -20,7 +20,7 @@ class Users::ChallengesController < Users::BaseController
   end
 
   def show
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.last
   end
 
   def update
