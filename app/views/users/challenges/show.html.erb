@@ -39,8 +39,8 @@ $(document).ready(function(){
 </script>
 
 <div id="divPlaying" style="display: none;">
-    <h2>You're making <%="#{@challenge.meal_type}"%>!</h2>
-    <h1>Here are your mystery basket contents!</h1>
+    <h2><%="#{@challenge.meal_type.capitalize}"%> Challenge</h2>
+    <h1>Mystery Basket Ingredients:</h1>
     <%= audio_tag "1-03 Love Tractor.mp3", id: "sound", class: "ausio-to-play" %>
     <h2><% @challenge.basket_contents.each do |ingredient|%></h2>
       <section id=ingredient-"<%= ingredient.id %>">

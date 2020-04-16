@@ -58,7 +58,7 @@ RSpec.describe "ratings" do
     @jans_lunch.game_complete
     @jans_lunch.reload
 
-    visit "/users/#{@javier.id}/dashboard"
+    visit dashboard_index_path
 
     find("#challenger").click
 

@@ -13,7 +13,7 @@ describe 'User ' do
   end
 
   it 'can create a new game', :js do
-    visit "/users/#{@bob.id}/dashboard"
+    visit dashboard_index_path
     find("#starter").click
 
     expect(current_path).to eq("/users/challenges/new")

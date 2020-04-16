@@ -19,7 +19,7 @@
       <% if current_user %>
         <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
         <li class="new-one"><%= link_to "Start New Game", "/users/challenges/new", method: :get %></li>
-        <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
+        <li class="right"><%= link_to "Dashboard", dashboard_index_path, method: :get%></li>
         <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
         <li class="right"><%= link_to "Challenges", "/challenges", method: :get%></li>
       <% else %>

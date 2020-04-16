@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   resources :challenges, only: [:index, :show]
 
   namespace :users do
-    get '/:user_id/dashboard', to: 'dashboard#index'
     get '/hints', to: 'games#hints'
   end
 
   scope :users, module: :users do
+    resources :dashboard, only: :index
     resources :ingredients, except: [:new, :show, :edit]
     resources :challenges, except: :destroy
     resources :ratings, only: :create
