@@ -28,7 +28,7 @@ RSpec.describe "After I finish my challenge" do
     challenge = @jake.challenges.first
 
     challenge.photos.new
-    challenge.photos.first.image.attach(io: File.open('/Users/christophergaddis/turing/3module/projects/home_chopper/app/assets/images/foods/steak.jpeg'), filename: 'steak.jpeg')
+    challenge.photos.first.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'foods', 'steak.jpeg')), filename: 'steak.jpeg')
     expect(challenge.photos.first.image.attached?).to be true
     challenge.update!(game_status: 'complete')
 
