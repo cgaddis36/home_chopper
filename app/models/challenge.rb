@@ -30,10 +30,6 @@ class Challenge < ApplicationRecord
     Challenge.joins(:ratings).group(:id).select('challenges.*, AVG(stars) AS AverageRating').order('AverageRating').limit(3)
   end
 
-  def start_game
-    update_column("game_status", "playing")
-  end
-
   def cancel_game
     update_column("game_status", "cancelled")
   end
