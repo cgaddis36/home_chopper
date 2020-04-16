@@ -15,9 +15,12 @@ RSpec.describe 'API call for recipes' do
     click_on "Find Recipes"
 
     expect(current_path).to eq("/recipes")
-
+save_and_open_page
     expect(page).to have_content("Chocolate-Speckled Salted Shortbread")
     expect(page).to have_content("Chocolate Biscuits")
-    save_and_open_page
   end
 end
+
+# expect(page).to have_content("dark chocolate")
+# expect(page).to have_content("vanilla")
+# expect(page).to have_content("butter")
