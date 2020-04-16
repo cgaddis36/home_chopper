@@ -13,6 +13,11 @@
   <section id= '3ingredients'>
     <h4>Three Ingredient Challenges</h4>
       <% Challenge.three_ingredients.each do |challenge| %>
+      <% if !challenge.photos.empty? %>
+      <section id='photo' style="width:400px; height:auto">
+        <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
+      </section>
+      <% end %>
         <section id= 'challenge-<%="#{challenge.id}"%>'>
           <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
           <h4>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h4>
