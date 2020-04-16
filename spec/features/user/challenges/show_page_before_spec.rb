@@ -14,9 +14,9 @@ describe 'User ' do
   end
 
   it 'can start a game' do
-    visit "/users/#{@bob.id}/challenges/#{@game.id}"
+    visit "/users/challenges/#{@game.id}"
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     expect(@game.game_status).to eq("before")
 
@@ -28,6 +28,6 @@ describe 'User ' do
     expect(@game.meal_type).to eq("dinner")
     expect(@game.basket_size).to eq(3)
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
   end
 end

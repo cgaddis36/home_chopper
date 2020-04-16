@@ -17,7 +17,7 @@ describe 'User ' do
 
     click_on 'Start New Game'
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/new")
+    expect(current_path).to eq("/users/challenges/new")
 
     select('20', from: :time_limit)
     select('Five Ingredients', from: :basket_size)

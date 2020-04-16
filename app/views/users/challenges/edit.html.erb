@@ -1,0 +1,11 @@
+<h1>Solo Challenge!</h1>
+<main class="game-done-main">
+  <h2>Congratulations!!</h2>
+  <h2>You did it! Share photo of your creation below!</h2>
+  <h2><%= form_tag "/users/challenges/#{@challenge.id}", params: {game_event: "save_photo"}, method: :patch do %>
+        <%= label_tag :photo %>
+        <%= text_field_tag :photo %>
+        <%= submit_tag "Save Photo"  %>
+      <% end %><br></h2>
+  <h2><%= button_to "Don't Save a Photo", "/users/challenges/#{@challenge.id}", params: {game_event: "no_photo"}, method: :patch %></h2><br>
+</main>
