@@ -115,9 +115,8 @@ $(document).ready(function(){
     </script>
     <br><br><br>
     <%= button_to "Recipe Book", "/users/hints", method: :get %><br><br><br>
-        
-    <%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}/update", params: {game_event: "cancel"}, method: :patch %><br><br><br>
-    <%= button_to "I Finished Early!", edit_challenge_path, method: :get%><br><br><br>
+    <%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}", params: {game_event: "cancel"}, method: :patch %>
+    <%= button_to "I Finished Early!", "/users/challenges/#{@challenge.id}/edit", method: :get %>
 </div>
 
   <% elsif @challenge.game_status == "cancelled" %>
@@ -129,19 +128,6 @@ $(document).ready(function(){
       <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
       <h2>Would you like to change your pantry ingredients?</h2>
       <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
-    </main>
-
-  <% elsif @challenge.game_status == "done" %>
-  <h1>Solo Challenge!</h1>
-    <main class="game-done-main">
-      <h2>Congratulations!!</h2>
-      <h2>You did it! Share photo of your creation below!</h2>
-      <h2><%= form_tag "/users/challenges/#{@challenge.id}", params: {game_event: "save_photo"}, method: :patch do %>
-            <%= label_tag :photo %>
-            <%= text_field_tag :photo %>
-            <%= submit_tag "Save Photo"  %>
-          <% end %><br></h2>
-      <h2><%= button_to "Don't Save a Photo", "/users/challenges/#{@challenge.id}", params: {game_event: "no_photo"}, method: :patch %></h2><br>
     </main>
 
   <% elsif @challenge.game_status == "complete" %>

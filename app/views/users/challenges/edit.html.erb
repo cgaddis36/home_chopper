@@ -1,5 +1,6 @@
-<h1>Solo Challenge!</h1>
-<main class="game-done-main">
+
+<main class="game-edit">
+  
   <h2>Congratulations!!</h2>
   <h2>You did it! Share photo of your creation below!</h2>
   <h2><%= form_tag "/users/challenges/#{@challenge.id}", params: {game_event: "save_photo"}, method: :patch do %>
@@ -8,4 +9,10 @@
         <%= submit_tag "Save Photo"  %>
       <% end %><br></h2>
   <h2><%= button_to "Don't Save a Photo", "/users/challenges/#{@challenge.id}", params: {game_event: "no_photo"}, method: :patch %></h2><br>
+
+  <h2><h2>Would you like play again with a fresh basket?</h2></h2>
+  <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
+  <h2>Would you like to change your pantry ingredients?</h2>
+  <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
+  <h2><%= button_to "Your Dashboard", "/users/dashboard", method: :get %></h2>
 </main>
