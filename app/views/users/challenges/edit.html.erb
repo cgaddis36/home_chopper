@@ -10,7 +10,7 @@
           <% end %><br></h2>
   <h2><%= button_to "Don't Save a Photo", "/users/challenges/#{@challenge.id}", params: {game_event: "no_photo"}, method: :patch %></h2><br>
 
-  <h2><h2>Would you like play again with a fresh basket?</h2></h2>
+  <h2><h2>Play Again?</h2></h2>
   <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
   <h2>Would you like to change your pantry ingredients?</h2>
   <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
