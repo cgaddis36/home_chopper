@@ -19,16 +19,15 @@ class Users::ChallengesController < Users::BaseController
   end
 
   def show
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.last
   end
 
   def update
     @challenge = Challenge.find(params[:id])
     if params[:game_event] == "cancel"
       @challenge.cancel_game
-    elsif params[:game_event] == "save_photo"
-      # needs photo functionality added - active storage??
-      @challenge.game_complete
+    elsif params[:game_event] == "done"
+      @challenge.finalize_game
     elsif params[:game_event] == "no_photo"
       @challenge.game_complete
     end

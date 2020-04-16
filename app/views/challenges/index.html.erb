@@ -6,7 +6,7 @@
     <% if current_user %>
       <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
       <li class="new-one"><%= link_to "Start New Game", "/users/challenges/new", method: :get %></li>
-      <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
+      <li class="right"><%= link_to "Dashboard", dashboard_index_path, method: :get%></li>
       <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
     <% else %>
       <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
@@ -21,6 +21,11 @@
   <section id= 'top-three'>
     <h4>Top 3 Rated Challenges</h4>
     <% Challenge.top_challenges.each do |challenge| %>
+      <% if !challenge.photos.empty? %>
+      <section id='photo' style="width:400px; height:auto">
+        <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
+      </section>
+      <% end %>
       <section id= 'challenge-<%="#{challenge.id}"%>'>
         <p> <%= challenge.user.name %>'s Challenge id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %> </p>
     <% end %><br>
@@ -29,6 +34,11 @@
   <section id= '3ingredients'>
     <h4>Three Ingredient Challenges</h4>
       <% Challenge.three_ingredients.each do |challenge| %>
+        <% if !challenge.photos.empty? %>
+        <section id='photo' style="width:400px; height:auto">
+          <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
+        </section>
+        <% end %>
         <section id= 'challenge-<%="#{challenge.id}"%>'>
           <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
           <h4>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h4>
@@ -38,6 +48,11 @@
   <section id= '5ingredients'>
     <h4>Five Ingredient Challenges</h4>
       <% Challenge.five_ingredients.each do |challenge| %>
+        <% if !challenge.photos.empty? %>
+        <section id='photo' style="width:400px; height:auto">
+          <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
+        </section>
+        <% end %>
       <section id= 'challenge-<%="#{challenge.id}"%>'>
         <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
         <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
@@ -47,6 +62,11 @@
   <section id= '7ingredients'>
     <h4>Five Ingredient Challenges</h4>
       <% Challenge.seven_ingredients.each do |challenge| %>
+        <% if !challenge.photos.empty? %>
+        <section id='photo' style="width:400px; height:auto">
+          <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
+        </section>
+        <% end %>
       <section id= 'challenge-<%="#{challenge.id}"%>'>
         <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
         <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>

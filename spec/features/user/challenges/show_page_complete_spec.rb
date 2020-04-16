@@ -30,17 +30,16 @@ describe 'User ' do
     @game.reload
 
     expect(current_path).to eq("/users/challenges/#{@game.id}")
-    expect(@game.game_status).to eq("complete")
-    expect(page).to have_content("Here Are Your Game Results:")
-    expect(page).to have_content("You had a #{@game.time_limit} minute challenge.")
-    expect(page).to have_content("You were challenged to make a #{@game.meal_type}")
-    expect(page).to have_content("Your Mystery Basket Ingredients Were:")
+    expect(page).to have_content("Here Are Your Game Results!")
+    expect(page).to have_content("Time: #{@game.time_limit} Minutes")
+    expect(page).to have_content("Cooking: #{@game.meal_type.capitalize}")
+    expect(page).to have_content("Basket Ingredients:")
     expect(page).to have_content("#{@contents[0].name}")
     expect(page).to have_content("#{@contents[1].name}")
     expect(page).to have_content("#{@contents[2].name}")
-    expect(page).to have_content("Would you like play again with a fresh basket?")
+    expect(page).to have_content("Play Again?")
     expect(page).to have_button("Start New Game")
-    expect(page).to have_content("Would you like to change your pantry ingredients?")
+    expect(page).to have_content("Update Pantry?")
     expect(page).to have_button("Your Pantry")
   end
 end
