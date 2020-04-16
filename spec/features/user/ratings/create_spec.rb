@@ -58,7 +58,7 @@ RSpec.describe "ratings" do
     @jans_lunch.game_complete
     @jans_lunch.reload
 
-    visit "/users/#{@javier.id}/dashboard"
+    visit "/users/dashboard"
 
     click_on "See All Challenges"
 

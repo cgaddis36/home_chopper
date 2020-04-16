@@ -13,7 +13,7 @@ describe 'User ' do
   end
 
   it 'can create a new game' do
-    visit "/users/#{@bob.id}/dashboard"
+    visit "/users/dashboard"
 
     click_on 'Start New Game'
 
