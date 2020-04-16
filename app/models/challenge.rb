@@ -34,10 +34,6 @@ class Challenge < ApplicationRecord
     update_column("game_status", "cancelled")
   end
 
-  def finalize_game
-    update_column("game_status", "done")
-  end
-
   def game_complete
     update_column("game_status", "complete")
   end

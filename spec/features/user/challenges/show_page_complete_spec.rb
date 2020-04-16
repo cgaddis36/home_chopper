@@ -21,15 +21,16 @@ describe 'User ' do
 
     @game.reload
 
-    expect(@game.game_status).to eq("done")
+    expect(@game.game_status).to eq("playing")
+
+    expect(current_path).to eq("/users/challenges/#{@game.id}/edit")
 
     click_on "Don't Save a Photo"
 
     @game.reload
 
-    expect(@game.game_status).to eq("complete")
-
     expect(current_path).to eq("/users/challenges/#{@game.id}")
+    expect(@game.game_status).to eq("complete")
     expect(page).to have_content("Here Are Your Game Results:")
     expect(page).to have_content("You had a #{@game.time_limit} minute challenge.")
     expect(page).to have_content("You were challenged to make a #{@game.meal_type}")
