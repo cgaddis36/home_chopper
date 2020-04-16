@@ -12,7 +12,7 @@ RSpec.describe "After I finish my challenge" do
   end
 
   it "I can upload a picture of my meal " do
-    visit "/users/#{@jake.id}/dashboard"
+    visit dashboard_index_path
 
     find("#starter").click
 
@@ -22,8 +22,6 @@ RSpec.describe "After I finish my challenge" do
     click_on("Start New Game")
 
     click_on("Let's Get Choppin'")
-
-    click_on("I Finished Early!")
 
     challenge = @jake.challenges.first
 
