@@ -15,7 +15,7 @@
       <li><a href="#friends">Friends</a></li>
       <% if current_user %>
         <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
-        <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
+        <li class="right"><%= link_to "Dashboard", "/users/dashboard", method: :get%></li>
         <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
         <li class="right"><%= link_to "Challenges", "/challenges", method: :get%></li>
       <% else %>
@@ -24,7 +24,7 @@
     </ul>
 
       <center>
-        
+
    <% flash.each do |name, msg| -%>
      <%= content_tag :div, msg, class: name %>
    <% end -%>
