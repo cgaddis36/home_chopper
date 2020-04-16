@@ -16,24 +16,19 @@
       <% if current_user %>
         <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
         <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
-        <li class="right"><%= link_to "Pantry", "/users/#{current_user.id}/ingredients", method: :get%></li>
+        <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
+        <li class="right"><%= link_to "Challenges", "/challenges", method: :get%></li>
       <% else %>
         <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
       <% end %>
     </ul>
 
-    <center>
-      <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: name %>
-          <% end -%>
-    </center>
-    
-    <center>
       <center>
+        
    <% flash.each do |name, msg| -%>
-         <%= content_tag :div, msg, class: name %>
-       <% end -%>
- </center>
+     <%= content_tag :div, msg, class: name %>
+   <% end -%>
+
       <%= yield %>
     </center>
   </body>

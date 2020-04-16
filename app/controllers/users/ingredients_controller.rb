@@ -1,23 +1,25 @@
+# rubocop:disable Style/ClassAndModuleChildren
+
 class Users::IngredientsController < Users::BaseController
   def index
-    @ingredients = User.find(params[:user_id]).ingredients
+    @ingredients = User.find(current_user.id).ingredients
   end
 
   def create
-    user = User.find(params[:user_id])
+    user = User.find(current_user.id)
     new_ingredient = user.ingredients.new(ingredient_params)
     if new_ingredient.save
       flash[:success] = "New Item Saved"
     else
       flash[:error] = "Name Can Not Be Blank"
     end
-    redirect_to "/users/#{user.id}/ingredients"
+    redirect_to "/users/ingredients"
   end
 
   def destroy
-    ingredient = Ingredient.find(params[:ingredient_id])
+    ingredient = Ingredient.find(params[:id])
     flash[:success] = "Ingredient Removed From Pantry" if ingredient.destroy
-    redirect_to "/users/#{current_user.id}/ingredients"
+    redirect_to "/users/ingredients"
   end
 
   private
@@ -26,3 +28,5 @@ class Users::IngredientsController < Users::BaseController
     params.permit(:name)
   end
 end
+
+# rubocop:enable Style/ClassAndModuleChildren
