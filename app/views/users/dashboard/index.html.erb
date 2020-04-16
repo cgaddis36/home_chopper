@@ -1,3 +1,11 @@
 
-<br><br><%= button_to "Start New Game", "/users/challenges/new", method: :get %><br><br>
-<br><br><%= button_to "See All Challenges", "/challenges", method: :get %><br><br>
+<br><br>
+<section id='start' style= width:400px; height:auto">
+  <%= link_to image_tag("https://www.nicepng.com/png/detail/110-1108890_start-button-game-start-button-png.png", style:'width:100%'), "/users/challenges/new", method: :get %><br><br>
+</section>
+
+<br><br>
+
+<section id='challenges' style= width:400px; height:auto">
+  <%= link_to image_tag("https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fsteveolenski%2Ffiles%2F2014%2F09%2Fbigstock-Challenges-Road-Sign-3530978.jpg", style:'width:100%'), "/challenges", method: :get %><br><br>
+</section>
