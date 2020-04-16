@@ -6,6 +6,7 @@
     <li><a href="#friends">Friends</a></li>
     <% if current_user %>
       <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
+      <li class="new-one"><%= link_to "Start New Game", "/users/challenges/new", method: :get %></li>
       <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
       <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
     <% else %>
@@ -13,10 +14,10 @@
     <% end %>
   </ul>
 </div>
-<h1>Solo Challenge!</h1>
 
-<% if @challenge.game_status == "before" %>
-<div id="before">
+<% if @challenge.game_status == "playing" %>
+<h1>Solo Challenge!</h1>
+<div id="playing">
   <main class="game-info-main">
     <h2>This is a solo game.  You race against the clock to build a fabulous dish using all the items in your mystery basket.</h2>
     <h2>As soon as you click "Let's Get Choppin'!", Your basket contents will be revealed, your timer will start, and the game will begin!</h2>
@@ -30,16 +31,13 @@
 <script>
 $(document).ready(function(){
   $("#hide").click(function(){
-    $("#before").hide();
     $("#navbar").hide();
     $("#divPlaying").show();
   });
 });
 </script>
 
-
 <div id="divPlaying" style="display: none;">
-  <main class="game-play-main">
     <h2>You're making <%="#{@challenge.meal_type}"%>!</h2>
     <h1>Here are your mystery basket contents!</h1>
     <h2><% @challenge.basket_contents.each do |ingredient|%></h2>
@@ -47,35 +45,44 @@ $(document).ready(function(){
         <h2><%= ingredient.name %></h2>
       </section>
     <% end %>
-  </main>
 
-<h3>Countdown Clock</h3> 
-<div id="clockdiv"> 
-  <div> 
-    <span class="hours" id="hour"></span> 
-    <div class="smalltext">Hours</div> 
-  </div> 
-  <div> 
-    <span class="minutes" id="minute"></span> 
-    <div class="smalltext">Minutes</div> 
-  </div> 
-  <div> 
-    <span class="seconds" id="second"></span> 
-    <div class="smalltext">Seconds</div> 
-  </div> 
-</div> 
+<h3>Countdown Clock</h3>
+<div id="clockdiv">
+  <div>
+    <span class="hours" id="hour"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span class="minutes" id="minute"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span class="seconds" id="second"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>
 
-<p id="demo"></p> 
+<p id="demo"></p>
 
 <script>
+<<<<<<< HEAD
+=======
+  function myFunction() {
+    document.querySelector("#navbar").setAttribute("id", "hidden");
+  }
+</script>
+
+<script>
+>>>>>>> 96c87af9eff1a4692704e7e4446e129f0720d4ee
   var submitButton = document.querySelector("#hide")
 
   submitButton.addEventListener('click', () => {
-    
+
     var num = "<%="#{@challenge.time_limit}"%>"
     var personInput = (Number(num)*60) * 1000
 
     var deadline = new Date(Date.now() + personInput).getTime();
+<<<<<<< HEAD
     var x = setInterval(function() { 
       
       var now = new Date().getTime(); 
@@ -97,6 +104,29 @@ $(document).ready(function(){
             document.getElementById("second").innerHTML = '0'; 
             window.location.href = "<%= edit_challenge_path %>";
             } 
+=======
+    var x = setInterval(function() {
+
+      var now = new Date().getTime();
+
+    var t = deadline - now;
+
+    var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+    document.getElementById("hour").innerHTML =hours;
+    document.getElementById("minute").innerHTML = minutes;
+    document.getElementById("second").innerHTML =seconds;
+    if (t < 0) {
+      clearInterval(x);
+            document.getElementById("demo").innerHTML = "TIME'S UP";
+            document.getElementById("hour").innerHTML ='0';
+            document.getElementById("minute").innerHTML ='0' ;
+            document.getElementById("second").innerHTML = '0';
+            window.location.href = "<%= edit_challenge_path %>";
+            }
+>>>>>>> 96c87af9eff1a4692704e7e4446e129f0720d4ee
       }, 1000);
 
     })
@@ -124,6 +154,7 @@ $(document).ready(function(){
 </div>
 
   <% elsif @challenge.game_status == "cancelled" %>
+    <h1>Solo Challenge!</h1>
     <main class="game-cancelled-main">
       <h2>This game has been cancelled.</h2>
       <h2>Click here for recipe ideas using your basket ingredients.</h2>
@@ -134,6 +165,7 @@ $(document).ready(function(){
     </main>
 
   <% elsif @challenge.game_status == "done" %>
+  <h1>Solo Challenge!</h1>
     <main class="game-done-main">
       <h2>Congratulations!!</h2>
       <h2>You did it! Share photo of your creation below!</h2>
@@ -147,19 +179,25 @@ $(document).ready(function(){
 
   <% elsif @challenge.game_status == "complete" %>
     <main class="game-complete-main">
-      <h1>Here Are Your Game Results!!</h1>
+      <h1>You Did It!!</h1>
+      <h2>Here Are Your Game Results:</h2>
+      <h2>Game # <%= "#{@challenge.id}" %></h2>
       <h2>You had a <%= @challenge.time_limit %> minute challenge.</h2>
       <h2>You were challenged to make a <%= @challenge.meal_type %>.</h2>
+      <h2>Your Basket Size Was: <%= @challenge.basket_size %>.</h2>
       <h2>Your Mystery Basket Ingredients Were:</h2>
       <% @challenge.ingredients.each do |ingredient|%>
           <section id=final_ingredient-"<%= ingredient.id %>">
             <h3><%= ingredient.name %></h3>
           </section>
-          <% end %>
-      <h2><h2>Would you like play again with a fresh basket?</h2></h2>
+      <% end %>
+      <h2> Would you like play again with a fresh basket? </h2>
       <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
       <h2>Would you like to change your pantry ingredients?</h2>
       <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
+<<<<<<< HEAD
       <h2><%= button_to "Your Dashboard", "/users/#{current_user.id}/dashboard", method: :get %></h2>
+=======
+>>>>>>> 96c87af9eff1a4692704e7e4446e129f0720d4ee
     </main>
 <% end %>

@@ -10,7 +10,9 @@ gem 'omniauth-google-oauth2'
 gem 'pry'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 gem 'rubocop', require: false
+gem 'selenium-webdriver'
 gem 'travis'
+gem 'webdrivers'
 gem 'will_paginate'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Use postgresql as the database for Active Record
