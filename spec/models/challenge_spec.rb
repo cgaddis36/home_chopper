@@ -101,24 +101,8 @@ RSpec.describe Challenge, type: :model do
       expect(@game.basket_contents.count).to eq(3)
     end
 
-    it "can change the challenge status to playing" do
-      expect(@game.game_status).to eq("before")
-
-      @game.start_game
-
-      expect(@game.game_status).to eq("playing")
-    end
-
-    it "can change the challenge status to paused" do
-      expect(@game.game_status).to eq("before")
-
-      @game.pause_game
-
-      expect(@game.game_status).to eq("paused")
-    end
-
     it "can change the challenge status to cancelled" do
-      expect(@game.game_status).to eq("before")
+      expect(@game.game_status).to eq("playing")
 
       @game.cancel_game
 
@@ -126,7 +110,7 @@ RSpec.describe Challenge, type: :model do
     end
 
     it "can change the challenge status to complete" do
-      expect(@game.game_status).to eq("before")
+      expect(@game.game_status).to eq("playing")
 
       @game.finalize_game
 
@@ -134,7 +118,7 @@ RSpec.describe Challenge, type: :model do
     end
 
     it "can change the challenge status to complete" do
-      expect(@game.game_status).to eq("before")
+      expect(@game.game_status).to eq("playing")
 
       @game.game_complete
 
