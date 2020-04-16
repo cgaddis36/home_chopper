@@ -59,7 +59,7 @@
       <h2>Congratulations!!</h2>
       <h2>Hope it tastes better than it looks! </br>
         Share photo of your creation below!</h2>
-      <h2><%= form_with model: @photo, local: true do |form| %>
+      <h2><%= form_with url: photos_path, model: @photo, local: true do |form| %>
             <%= form.label :image %>
             <%= form.file_field :image %>
             <%= submit_tag "Save Photo"  %>
