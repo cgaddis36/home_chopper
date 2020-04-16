@@ -21,8 +21,8 @@
   <main class="game-info-main">
     <h2> <%="#{@challenge.basket_size}"%> Ingredients </h2>
     <h2> <%="#{@challenge.time_limit}"%> Minutes</h2>
-    <h2>Can You Handle The Heat?</h2>
-    <button onclick="myFunction()" id="hide">Let's Get Choppin'!</button>
+    <h2>Can You Handle The Heat?</h2><br>
+    <button onclick="myFunction()" id="hide">Let's Get Choppin'!</button><br><br>
     <iframe src="https://giphy.com/embed/l2SqeoNIBb432sF44" width="480" height="330" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
   </main>
 </div>
@@ -67,12 +67,6 @@ $(document).ready(function(){
 <p id="demo"></p>
 
 <script>
-  function myFunction() {
-    document.querySelector("#navbar").setAttribute("id", "hidden");
-  }
-</script>
-
-<script>
   var submitButton = document.querySelector("#hide")
 
   submitButton.addEventListener('click', () => {
@@ -81,27 +75,27 @@ $(document).ready(function(){
     var personInput = (Number(num)*60) * 1000
 
     var deadline = new Date(Date.now() + personInput).getTime();
-    var x = setInterval(function() {
+    var x = setInterval(function() { 
+      
+      var now = new Date().getTime(); 
 
-      var now = new Date().getTime();
+    var t = deadline - now; 
+    
+    var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+    var seconds = Math.floor((t % (1000 * 60)) / 1000); 
 
-    var t = deadline - now;
-
-    var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
-    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((t % (1000 * 60)) / 1000);
-
-    document.getElementById("hour").innerHTML =hours;
-    document.getElementById("minute").innerHTML = minutes;
-    document.getElementById("second").innerHTML =seconds;
-    if (t < 0) {
-      clearInterval(x);
-            document.getElementById("demo").innerHTML = "TIME'S UP";
-            document.getElementById("hour").innerHTML ='0';
-            document.getElementById("minute").innerHTML ='0' ;
-            document.getElementById("second").innerHTML = '0';
+    document.getElementById("hour").innerHTML =hours; 
+    document.getElementById("minute").innerHTML = minutes;  
+    document.getElementById("second").innerHTML =seconds;  
+    if (t < 0) { 
+      clearInterval(x); 
+            document.getElementById("demo").innerHTML = "TIME'S UP";  
+            document.getElementById("hour").innerHTML ='0'; 
+            document.getElementById("minute").innerHTML ='0' ;  
+            document.getElementById("second").innerHTML = '0'; 
             window.location.href = "<%= edit_challenge_path %>";
-            }
+            } 
       }, 1000);
 
     })
@@ -124,7 +118,7 @@ $(document).ready(function(){
     <br><br><br>
     <iframe src="https://giphy.com/embed/demgpwJ6rs2DS" width="480" height="359" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
     <%= button_to "Recipe Book", "/users/hints", method: :get %><br><br><br>
-    <%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}", params: {game_event: "cancel"}, method: :patch %>
+    <%= button_to "Cancel Game", "/users/challenges/#{@challenge.id}", params: {game_event: "cancel"}, method: :patch %><br><br><br>
     <%= button_to "I Finished Early!", "/users/challenges/#{@challenge.id}/edit", method: :get %>
 </div>
 
@@ -134,7 +128,7 @@ $(document).ready(function(){
       <h2>This game has been cancelled.</h2>
       <h2>Click here for recipe ideas using your basket ingredients.</h2>
       <h2><h2>Would you like to try again with a fresh basket?</h2></h2>
-      <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
+      <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br><br>
       <h2>Would you like to change your pantry ingredients?</h2>
       <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
     </main>
