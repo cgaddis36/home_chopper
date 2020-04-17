@@ -1,24 +1,27 @@
 # README
+Home Chopper (Play a round of Chopped at home!)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby Version 5.4.3
+Rails 5.2.4
 
-Things you may want to cover:
+Travis CI Testing Suite
+RSpec Testing
+PostGreSQL database architecture
 
-* Ruby version
+Heroku Deployment
+Active Storage (Photos, Audio)
+JavaScript 
+Sinatra Microservice housing API calls to Spoonacular
+Google OAuth
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+STEPS FOR REPLICATION:
+-Clone this Repository
+-Bundle install
+-Figaro install
+-Retrieve Spoonacular API key here: (https://spoonacular.com/food-api)
+-insert your personal key into application.yml
+-rails db:{create,migrate,seed}
+-bundle exec RSpec
+-Production suite: Localhost:3000
+-Heroku production link: https://arcane-ocean-08866.herokuapp.com/
+-Start Choppin'!
