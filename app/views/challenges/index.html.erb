@@ -49,7 +49,7 @@
   <div class="container">
 
     <section id= '7ingredients'>
-      <h4>Five Ingredient Challenges</h4>
+      <h4>Seven Ingredient Challenges</h4>
         <% Challenge.seven_ingredients.each do |challenge| %>
         <section id= 'challenge-<%="#{challenge.id}"%>'>
           <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
