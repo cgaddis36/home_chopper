@@ -84,7 +84,7 @@ ul.topnav li.right {float: right;}
   transition: 0.3s;
   width: 40%;
   border-radius: 5px;
-  background-color: rgb(107, 122, 189);
+  background-color: rgb(160, 236, 255);
 }
 
 .card:hover {
