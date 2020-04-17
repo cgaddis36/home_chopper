@@ -22,7 +22,7 @@ describe 'User ' do
     select('Five Ingredients', from: :basket_size)
     select('Dinner', from: :meal_type)
 
-    click_on "Start New Game"
+    click_on "Begin New Game"
 
     game = Challenge.last
 

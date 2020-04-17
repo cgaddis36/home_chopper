@@ -5,6 +5,7 @@ describe 'User ' do
     @bob = User.create!(name: "Bob", email: "bob@sample.com", google_token: "12345", role: 0)
     @chocolate = @bob.ingredients.create!(name: "Chocolate")
     @squid = @bob.ingredients.create!(name: "Squid")
+    @crab = @bob.ingredients.create!(name: "Crab")
     @blueberries = @bob.ingredients.create!(name: "Blueberries")
     @cinnamon = @bob.ingredients.create!(name: "Cinnamon")
     @eggs = @bob.ingredients.create!(name: "Eggs")
@@ -18,10 +19,7 @@ describe 'User ' do
     visit "/users/challenges/#{@game.id}"
     click_on "Let's Get Choppin'!"
     click_on "I Finished Early!"
-
     @game.reload
-
-    expect(@game.game_status).to eq("playing")
 
     expect(current_path).to eq("/users/challenges/#{@game.id}/edit")
 
@@ -37,9 +35,7 @@ describe 'User ' do
     expect(page).to have_content("#{@contents[0].name}")
     expect(page).to have_content("#{@contents[1].name}")
     expect(page).to have_content("#{@contents[2].name}")
-    expect(page).to have_content("Play Again?")
     expect(page).to have_button("Start New Game")
-    expect(page).to have_content("Update Pantry?")
     expect(page).to have_button("Your Pantry")
   end
 end

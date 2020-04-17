@@ -1,4 +1,5 @@
 # rubocop:disable Style/ClassAndModuleChildren
+# rubocop:disable Style/IfUnlessModifier
 
 class Users::IngredientsController < Users::BaseController
   def index
@@ -18,7 +19,9 @@ class Users::IngredientsController < Users::BaseController
 
   def destroy
     ingredient = Ingredient.find(params[:id])
-    flash[:success] = "Ingredient Removed From Pantry" if ingredient.destroy
+    if ingredient.destroy
+      flash[:success] = "Ingredient Removed From Pantry"
+    end
     redirect_to "/users/ingredients"
   end
 
@@ -29,4 +32,5 @@ class Users::IngredientsController < Users::BaseController
   end
 end
 
+# rubocop:enable Style/IfUnlessModifier
 # rubocop:enable Style/ClassAndModuleChildren

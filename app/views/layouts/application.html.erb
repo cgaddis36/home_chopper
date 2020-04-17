@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <body>
 
-  <% unless controller_name == "challenges" %>
+  <% unless controller_name == "/users/challenges" %>
     <ul class="topnav">
       <li><a class="active" href="/">Home</a></li>
       <li><a href="#friends">Friends</a></li>
@@ -20,8 +20,10 @@
         <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
         <li class="new-one"><%= link_to "Start New Game", "/users/challenges/new", method: :get %></li>
         <li class="right"><%= link_to "Dashboard", dashboard_index_path, method: :get%></li>
+        <li class="right"><%= link_to "My Challenges", "/users/challenges", method: :get%></li>
         <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
         <li class="right"><%= link_to "Challenges", "/challenges", method: :get%></li>
+        <li class="right"><%= link_to "Search For Recipes?", "/recipes/new", method: :get%></li>
       <% else %>
         <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
       <% end %>
