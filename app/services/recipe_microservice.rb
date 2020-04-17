@@ -16,7 +16,7 @@ class RecipeMicroservice
   private
 
   def conn
-    #apiKey has a small limit
+    # apiKey has a small limit
     conn = Faraday.new(url: "https://recipe-mircoservice.herokuapp.com")
   end
 
