@@ -1,5 +1,6 @@
-class Users::PhotosController < Users::BaseController
+# rubocop:disable Style/ClassAndModuleChildren
 
+class Users::PhotosController < Users::BaseController
   def create
     challenge = Challenge.last
     challenge.photos.create(photo_params)
@@ -13,3 +14,5 @@ class Users::PhotosController < Users::BaseController
     params.permit(:image)
   end
 end
+
+# rubocop:enable Style/ClassAndModuleChildren

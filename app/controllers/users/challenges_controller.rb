@@ -9,13 +9,8 @@ class Users::ChallengesController < Users::BaseController
   end
 
   def create
-    challenge = current_user.challenges.new(challenge_params)
-    if challenge.save
-      redirect_to "/users/challenges/#{challenge.id}"
-    else
-      flash[:error] = challenge.errors.full_messages.to_sentence
-      redirect_to "/users/challenges/new"
-    end
+    challenge = current_user.challenges.create(challenge_params)
+    redirect_to "/users/challenges/#{challenge.id}"
   end
 
   def show

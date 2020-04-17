@@ -1,0 +1,8 @@
+<h1>Here Are a Few Recipes You Might Like</h1>
+  <% @recipes.each do |recipe| %>
+      <h2><%= recipe.title %></h2>
+      <% recipe.ingredients.each do |ingredient| %>
+        <%= ingredient %><br>
+      <% end %><br>
+      <%= recipe.instructions %>
+  <% end %>
