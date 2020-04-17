@@ -11,7 +11,6 @@ class Users::ChallengesController < Users::BaseController
   def create
     challenge = current_user.challenges.new(challenge_params)
     if challenge.save
-      flash[:success] = "New Game Started!"
       redirect_to "/users/challenges/#{challenge.id}"
     else
       flash[:error] = challenge.errors.full_messages.to_sentence
