@@ -20,12 +20,5 @@ RSpec.describe Ingredient, type: :model do
       @jans_dessert = @janis.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "lunch", game_status: "complete")
       @challenge_ingredient = ChallengeIngredient.create!(challenge_id: @jans_dessert.id, ingredient_id: @pears.id)
     end
-
-    it "can delete a challenge ingredient" do
-      expect(ChallengeIngredient.where("ingredient_id = #{@pears.id}")).to eq([@challenge_ingredient])
-      @pears.kill_join_entry
-      @pears.reload
-      expect(ChallengeIngredient.where("ingredient_id = #{@pears.id}")).to eq([])
-    end
   end
 end
