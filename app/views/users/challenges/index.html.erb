@@ -1,6 +1,8 @@
-
 <div class='all-challenges'>
   <h2>My Solo Challenges</h2>
+
+<div class="card">
+  <div class="container">
 
   <section id= '3ingredients'>
     <h4>Three Ingredient Challenges</h4>
@@ -16,6 +18,12 @@
     <% end %>
   </section>
 
+ </div>
+</div><br><br><br>
+
+<div class="card">
+  <div class="container">
+
   <section id= '5ingredients'>
     <h4>Five Ingredient Challenges</h4>
     <% Challenge.my_five_ingredients(current_user).each do |challenge| %>
@@ -30,6 +38,11 @@
     <% end %>
   </section>
 
+   </div>
+</div><br><br><br>
+
+<div class="card">
+  <div class="container">
   <section id= '7ingredients'>
     <h4>Seven Ingredient Challenges</h4>
     <% Challenge.my_seven_ingredients(current_user).each do |challenge| %>
@@ -43,4 +56,6 @@
           <% end %><br>
     <% end %>
   </section>
+   </div>
+</div><br><br><br>
 </div>
