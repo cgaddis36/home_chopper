@@ -19,6 +19,7 @@ class Users::IngredientsController < Users::BaseController
 
   def destroy
     ingredient = Ingredient.find(params[:id])
+    ingredient.kill_join_entry
     if ingredient.destroy
       flash[:success] = "Ingredient Removed From Pantry"
     end

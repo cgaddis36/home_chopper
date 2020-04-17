@@ -10,6 +10,8 @@ describe "ingredients index" do
     @cinnamon = @bob.ingredients.create(name: "Cinnamon")
     @eggs = @bob.ingredients.create(name: "Eggs")
     @toast = @bob.ingredients.create(name: "Toast")
+    @bobs_breakfast = @bob.challenges.create!(time_limit: 20, basket_size: 3, meal_type: "breakfast")
+    ChallengeIngredient.create!(challenge_id: @bobs_breakfast.id, ingredient_id: @crab.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
 
