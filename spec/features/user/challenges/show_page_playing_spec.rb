@@ -14,9 +14,9 @@ describe 'User ' do
   end
 
   it 'can play a game' do
-    visit "/users/#{@bob.id}/challenges/#{@game.id}"
+    visit "/users/challenges/#{@game.id}"
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     expect(@game.game_status).to eq("before")
 
@@ -26,7 +26,7 @@ describe 'User ' do
 
     expect(@game.game_status).to eq("playing")
 
-    expect(current_path).to eq("/users/#{@bob.id}/challenges/#{@game.id}")
+    expect(current_path).to eq("/users/challenges/#{@game.id}")
 
     contents = @game.ingredients
 
