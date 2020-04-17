@@ -1,5 +1,4 @@
 # rubocop:disable Style/ClassAndModuleChildren
-# rubocop:disable Style/IfUnlessModifier
 
 class Users::IngredientsController < Users::BaseController
   def index
@@ -31,5 +30,4 @@ class Users::IngredientsController < Users::BaseController
   end
 end
 
-# rubocop:enable Style/IfUnlessModifier
 # rubocop:enable Style/ClassAndModuleChildren
