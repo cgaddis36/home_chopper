@@ -19,5 +19,4 @@ class Recipe
     recipe_data = @search_facade.get_recipe_information(id)
     recipe_data[:instructions]
   end
-
 end

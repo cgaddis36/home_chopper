@@ -1,5 +1,6 @@
-class RecipeSearch
+# rubocop:disable Naming/AccessorMethodName
 
+class RecipeSearch
   def initialize(ingredients)
     @ingredients = ingredients
     @service = RecipeMicroservice.new
@@ -14,11 +15,9 @@ class RecipeSearch
     recipes
   end
 
-  # def get_recipe_instructions(id)
-  #   @recipe_instructions_json ||= @service.get_recipe_instructions(id)
-  # end
-
   def get_recipe_information(id)
-    @recipe_ingredients_json ||= @service.get_recipe_info(id)
+    @service.get_recipe_info(id)
   end
 end
+
+# rubocop:enable Naming/AccessorMethodName

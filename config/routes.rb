@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :recipes, only: [:new, :index]
   resources :challenges, only: [:index, :show]
 
-
   namespace :users do
     get '/hints', to: 'games#hints'
   end

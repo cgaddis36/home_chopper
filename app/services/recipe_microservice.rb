@@ -3,15 +3,8 @@ class RecipeMicroservice
     response = conn.get('/recipe-recommendations') do |req|
       req.params['ingredients'] = ingredients
     end
-      get_json(response)
+    get_json(response)
   end
-  #
-  # def get_recipe_instructions(id)
-  #   response = conn.get('/recipe-instructions') do |req|
-  #     req.params['id'] = id
-  #   end
-  #   get_json(response)
-  # end
 
   def get_recipe_info(id)
     response = conn.get('/recipe-information') do |req|
@@ -20,10 +13,10 @@ class RecipeMicroservice
     get_json(response)
   end
 
- private
+  private
 
   def conn
-   conn = Faraday.new(url: "https://recipe-mircoservice.herokuapp.com")
+    conn = Faraday.new(url: "https://recipe-mircoservice.herokuapp.com")
   end
 
   def get_json(response)

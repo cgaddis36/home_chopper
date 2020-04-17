@@ -16,9 +16,9 @@ RSpec.describe "After I finish my challenge" do
 
     find("#starter").click
 
-    select('20', :from => :time_limit)
-    select('Three Ingredients', :from => :basket_size)
-    select('Dinner', :from => :meal_type)
+    select('20', from: :time_limit)
+    select('Three Ingredients', from: :basket_size)
+    select('Dinner', from: :meal_type)
     click_on("Start New Game")
 
     click_on("Let's Get Choppin'")

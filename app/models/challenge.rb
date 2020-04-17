@@ -66,4 +66,12 @@ class Challenge < ApplicationRecord
   def not_mine?(id)
     self.user != User.find(id)
   end
+
+  def get_ingredients_for_search
+    params = {}
+    ingredient_number = 0
+    self.ingredients.each do |ingredient|
+      params["ingredient_#{(ingredient_number += 1)}"]= ingredient.name
+    end
+  end
 end
