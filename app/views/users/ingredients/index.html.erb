@@ -5,7 +5,7 @@
       <h3>Ingredients</h3>
       <% @ingredients.each do |food| %>
         <section id= 'ingredient-<%=food.id%>'>
-          <%= food.name %><br>
+          <%= food.name  if food.status == "active" %><br>
           <%= button_to "Remove From Pantry", "/users/ingredients/#{food.id}", method: :delete %><br><br>
          </section>
 

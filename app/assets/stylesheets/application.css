@@ -35,17 +35,17 @@ body {margin: 0;
 
 #item_add {
   text-align: left;
-  background-color: darkred;
+  background-color: rgb(0, 236, 236);
+  padding-left: 100px;
   position: absolute;
-  padding: 4px 2px;
             }
 
   .ingredients {
      position: absolute;
      right: 150px;
      width: 200px;
-     background-color: cyan;
-     padding: 4px 2px;
+     background-color: rgb(0, 236, 236);
+     padding-right: 100px;
 }
 
 ul.topnav {
@@ -98,42 +98,42 @@ img {
 .container {
   padding: 2px 16px;
 }
-body{ 
-  text-align: center; 
-    background: rgb(0, 236, 236); 
-  font-family: sans-serif; 
-  font-weight: 100; 
-} 
-h1{ 
-  color: rgb(51, 92, 153); 
-  font-weight: 100; 
-  font-size: 80px; 
-  margin: 40px 0px 20px; 
-} 
- #clockdiv{ 
-   font-family: sans-serif; 
-    color: #fff; 
-    display: inline-block; 
-    font-weight: 100; 
-    text-align: center; 
-    font-size: 30px; 
-} 
-#clockdiv > div{ 
-  padding: 10px; 
-    border-radius: 3px; 
-    background: rgb(26, 174, 219); 
-    display: inline-block; 
-} 
-#clockdiv div > span{ 
-  padding: 15px; 
-    border-radius: 3px; 
-    background: rgb(0, 114, 129); 
-    display: inline-block; 
-} 
-.smalltext{ 
-  padding-top: 5px; 
-    font-size: 16px; 
-} 
+body{
+  text-align: center;
+    background: rgb(0, 236, 236);
+  font-family: sans-serif;
+  font-weight: 100;
+}
+h1{
+  color: rgb(51, 92, 153);
+  font-weight: 100;
+  font-size: 80px;
+  margin: 40px 0px 20px;
+}
+ #clockdiv{
+   font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+#clockdiv > div{
+  padding: 10px;
+    border-radius: 3px;
+    background: rgb(26, 174, 219);
+    display: inline-block;
+}
+#clockdiv div > span{
+  padding: 15px;
+    border-radius: 3px;
+    background: rgb(0, 114, 129);
+    display: inline-block;
+}
+.smalltext{
+  padding-top: 5px;
+    font-size: 16px;
+}
 
 input[type="button"], input[type="submit"] {
   display: inline-block;

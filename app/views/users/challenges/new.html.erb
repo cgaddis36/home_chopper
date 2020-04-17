@@ -1,21 +1,8 @@
-<div id="navbar">
-  <ul class="topnav">
-    <li><a class="active" href="/">Home</a></li>
-    <li><a href="#friends">Friends</a></li>
-    <% if current_user %>
-      <li class="right"><%= link_to "Logout", "/logout", method: :delete%></li>
-      <li class="right"><%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", method: :get%></li>
-      <li class="right"><%= link_to "Pantry", "/users/ingredients", method: :get%></li>
-    <% else %>
-      <li class="right"><%= link_to "Login with Google", google_oauth2_path%></li>
-    <% end %>
-  </ul>
-</div>
 
 <h2>New Challenge</h2>
   <%= form_for @challenge, url: "/users/challenges", method: :post do |f| %>
   <%= f.select :time_limit, [['20','20'],['40','40'],['60','60']], {}, :id=>"time_limit" %>
   <%= f.select :basket_size, [['Three Ingredients','3'],['Five Ingredients','5'],['Seven Ingredients','7']], {}, :id=>"basket_size" %>
   <%= f.select :meal_type, [['Breakfast','breakfast'],['Lunch','lunch'],['Dinner','dinner'],['Snack','snack'],['Dessert','dessert']], {}, :id=>"meal_type" %>
-  <%= f.submit "Start New Game"  %>
+  <%= f.submit "Begin New Game"  %>
 <% end %>
