@@ -2,58 +2,61 @@
 <h2>Challenges</h2>
   <h3>Solo Challenges</h3>
 
-  <section id= 'top-three'>
-    <h4>Top 3 Rated Challenges</h4>
-    <% Challenge.top_challenges.each do |challenge| %>
-      <% if !challenge.photos.empty? %>
-      <section id='photo' style="width:400px; height:auto">
-        <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
-      </section>
-      <% end %>
-      <section id= 'challenge-<%="#{challenge.id}"%>'>
-        <p> <%= challenge.user.name %>'s Challenge id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %> </p>
-    <% end %><br>
-  </section>
+<div class="card">
+  <div class="container">
 
-  <section id= '3ingredients'>
-    <h4>Three Ingredient Challenges</h4>
-      <% Challenge.three_ingredients.each do |challenge| %>
-        <% if !challenge.photos.empty? %>
-        <section id='photo' style="width:400px; height:auto">
-          <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
-        </section>
+    <section id= 'top-three'>
+      <h4>Top 3 Rated Challenges</h4>
+      <% Challenge.top_challenges.each do |challenge| %>
+        <section id= 'challenge-<%="#{challenge.id}"%>'>
+          <p> <%= challenge.user.name %>'s Challenge id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %> </p>
+      <% end %><br>
+    </section>
+    </div>
+  </div><br><br><br>
+
+<div class="card">
+  <div class="container">
+
+    <section id= '3ingredients'>
+      <h4>Three Ingredient Challenges</h4>
+        <% Challenge.three_ingredients.each do |challenge| %>
+          <section id= 'challenge-<%="#{challenge.id}"%>'>
+            <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
+            <h4>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h4>
         <% end %>
+    </section>
+
+    </div>
+  </div><br><br><br>
+
+<div class="card">
+  <div class="container">
+
+    <section id= '5ingredients'>
+      <h4>Five Ingredient Challenges</h4>
+        <% Challenge.five_ingredients.each do |challenge| %>
         <section id= 'challenge-<%="#{challenge.id}"%>'>
           <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
-          <h4>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h4>
+          <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
       <% end %>
-  </section>
+    </section>
 
-  <section id= '5ingredients'>
-    <h4>Five Ingredient Challenges</h4>
-      <% Challenge.five_ingredients.each do |challenge| %>
-        <% if !challenge.photos.empty? %>
-        <section id='photo' style="width:400px; height:auto">
-          <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
-        </section>
-        <% end %>
-      <section id= 'challenge-<%="#{challenge.id}"%>'>
-        <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
-        <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
-    <% end %>
-  </section>
+    </div>
+  </div><br><br><br>
 
-  <section id= '7ingredients'>
-    <h4>Five Ingredient Challenges</h4>
-      <% Challenge.seven_ingredients.each do |challenge| %>
-        <% if !challenge.photos.empty? %>
-        <section id='photo' style="width:400px; height:auto">
-          <%= link_to image_tag(challenge.photos.last.image, style:'width:100%'), challenges_path %>
-        </section>
-        <% end %>
-      <section id= 'challenge-<%="#{challenge.id}"%>'>
-        <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
-        <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
-    <% end %>
-  </section>
+<div class="card">
+  <div class="container">
+
+    <section id= '7ingredients'>
+      <h4>Five Ingredient Challenges</h4>
+        <% Challenge.seven_ingredients.each do |challenge| %>
+        <section id= 'challenge-<%="#{challenge.id}"%>'>
+          <h5><%= challenge.user.name %>'s <%= challenge.meal_type %> challenge. </h5>
+          <h5>Challenge Id: <%= button_to "#{challenge.id}", "/challenges/#{challenge.id}", method: :get %></h5>
+      <% end %>
+    </section>
+
+    </div>
+  </div><br><br><br>
 </div>
