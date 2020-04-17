@@ -18,7 +18,10 @@ class Users::IngredientsController < Users::BaseController
 
   def destroy
     ingredient = Ingredient.find(params[:id])
-    ingredient.update_column("status", "inactive")
+    if !ingredient.challenge_ingredients.empty?
+      ChallengeIngredient.where('ingredient_id = ?', params[:id])[0].delete
+    end 
+    ingredient.delete
     flash[:success] = "Ingredient Removed From Pantry"
     redirect_to "/users/ingredients"
   end
