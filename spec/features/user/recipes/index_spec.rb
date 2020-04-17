@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'API call for recipes' do
-  xit "can get recipe recommendations" do
+  it "can get recipe recommendations" do
     visit "/recipes/new"
 
     fill_in "ingredient_1", with: "chocolate"
