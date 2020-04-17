@@ -9,9 +9,4 @@ class Ingredient < ApplicationRecord
     challenge_ingredient = ChallengeIngredient.where("ingredient_id = #{self.id}")[0]
     challenge_ingredient.destroy
   end
-
-
-
-
-
 end
