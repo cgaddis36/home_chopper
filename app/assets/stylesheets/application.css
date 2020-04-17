@@ -14,8 +14,9 @@
  *= require_self
  */
 
- h1 {background-color: black;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+ h1 {background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/133/727/original/WoodBackground54342.jpg");
+    font-family: 'Tangerine', serif;
+    font-size: 50px;
     color: white;
     }
 
@@ -23,14 +24,14 @@ body {margin: 0;
       background-color: lightgrey;
       }
 
-#message {
+/* #message {
   text-align: center;
   width: 250px;
   background-color: cyan;
   position: absolute;
   padding: 4px 2px;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-}
+} */
 
 #item_add {
   text-align: left;
@@ -96,4 +97,72 @@ img {
 
 .container {
   padding: 2px 16px;
+}
+body{ 
+  text-align: center; 
+    background: rgb(0, 236, 236); 
+  font-family: sans-serif; 
+  font-weight: 100; 
+} 
+h1{ 
+  color: rgb(51, 92, 153); 
+  font-weight: 100; 
+  font-size: 80px; 
+  margin: 40px 0px 20px; 
+} 
+ #clockdiv{ 
+   font-family: sans-serif; 
+    color: #fff; 
+    display: inline-block; 
+    font-weight: 100; 
+    text-align: center; 
+    font-size: 30px; 
+} 
+#clockdiv > div{ 
+  padding: 10px; 
+    border-radius: 3px; 
+    background: rgb(26, 174, 219); 
+    display: inline-block; 
+} 
+#clockdiv div > span{ 
+  padding: 15px; 
+    border-radius: 3px; 
+    background: rgb(0, 114, 129); 
+    display: inline-block; 
+} 
+.smalltext{ 
+  padding-top: 5px; 
+    font-size: 16px; 
+} 
+
+input[type="button"], input[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.input[type="button"], input[type="submit"]:hover {background-color: #3e8e41}
+
+.input[type="button"], input[type="submit"]:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.playing {
+          display: none;
+}
+
+#thebody {
+      padding-left: 100px;
+      padding-right: 100px;
 }

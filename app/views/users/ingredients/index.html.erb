@@ -5,8 +5,8 @@
       <h3>Ingredients</h3>
       <% @ingredients.each do |food| %>
         <section id= 'ingredient-<%=food.id%>'>
-          <%= food.name %>
-          <%= button_to "Remove From Pantry", "/users/ingredients/#{food.id}", method: :delete %>
+          <%= food.name %><br>
+          <%= button_to "Remove From Pantry", "/users/ingredients/#{food.id}", method: :delete %><br><br>
          </section>
 
     <% end %></div>
