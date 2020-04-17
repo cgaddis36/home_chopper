@@ -1,12 +1,10 @@
-
-<center>
   <main class="game-main">
     <h1>Game Results</h1>
 
     <h2>Game # <%= "#{@challenge.id}" %></h2>
     <h2><%= "#{@challenge.user.name}" %> took <%= @challenge.time_limit %> minutes.</h2>
     <h2><%= "#{@challenge.user.name}" %> was challenged to make a <%= @challenge.meal_type %>.</h2>
-    <h2><%= "#{@challenge.user.name}" %>'s Basket Size: <%= @challenge.basket_size %>.</h2>
+    <h2>The Basket Size Was: <%= @challenge.basket_size %>.</h2>
     <h2>Their Mystery Basket Ingredients Were:</h2>
     <% @challenge.ingredients.each do |ingredient|%>
         <section id=final_ingredient-"<%= ingredient.id %>">
@@ -29,4 +27,3 @@
         <% end %>
     </section>
   </main>
-</center>

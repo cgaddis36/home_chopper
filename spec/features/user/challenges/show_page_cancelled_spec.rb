@@ -10,22 +10,20 @@ describe 'User ' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@bob)
   end
 
-  it 'can play a game' do
+  it 'can play a game', :js do
     visit "/users/challenges/#{@game.id}"
 
     expect(current_path).to eq("/users/challenges/#{@game.id}")
 
-    expect(@game.game_status).to eq("before")
-
-    click_on "Let's Get Choppin'!"
-
-    @game.reload
+    click_button "Let's Get Choppin'!"
 
     expect(@game.game_status).to eq("playing")
 
     expect(current_path).to eq("/users/challenges/#{@game.id}")
-
+    # save_and_open_page
+    # page.reset!
     click_on "Cancel Game"
+    # click_button ("Cancel Game")
 
     @game.reload
 
@@ -39,17 +37,17 @@ describe 'User ' do
     expect(page).to have_content("Would you like to change your pantry ingredients?")
     expect(page).to have_button("Your Pantry")
 
-    click_on 'Start New Game'
+    click_button 'Start New Game'
 
     expect(current_path).to eq("/users/challenges/new")
 
     select('20', from: :time_limit)
     select('Three Ingredients', from: :basket_size)
     select('Dinner', from: :meal_type)
-    click_on "Start New Game"
+    click_button "Begin New Game"
 
     game = Challenge.last
 
-    expect(game.game_status).to eq("before")
+    expect(game.game_status).to eq("playing")
   end
 end

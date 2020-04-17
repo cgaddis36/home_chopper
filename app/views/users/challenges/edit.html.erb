@@ -1,0 +1,18 @@
+
+<main class="game-edit">
+
+  <h2>Congratulations!!</h2>
+  <h2>You did it! Share photo of your creation below!</h2>
+  <h2><%= form_with url: photos_path, model: @photo, local: true do |form| %>
+            <%= form.label :image %>
+            <%= form.file_field :image %>
+            <%= submit_tag "Save Photo"  %>
+          <% end %><br></h2>
+  <h2><%= button_to "Don't Save a Photo", "/users/challenges/#{@challenge.id}", params: {game_event: "no_photo"}, method: :patch %></h2><br>
+
+  <h2><h2>Play Again?</h2></h2>
+  <h2><%= button_to "Start New Game", "/users/challenges/new", method: :get %></h2><br>
+  <h2>Would you like to change your pantry ingredients?</h2>
+  <h2><%= button_to "Your Pantry", "/users/ingredients", method: :get %></h2>
+  <h2><%= button_to "Your Dashboard", "/users/dashboard", method: :get %></h2>
+</main>

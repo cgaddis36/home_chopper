@@ -58,9 +58,9 @@ RSpec.describe "ratings" do
     @jans_lunch.game_complete
     @jans_lunch.reload
 
-    visit "/users/#{@javier.id}/dashboard"
+    visit dashboard_index_path
 
-    click_on "See All Challenges"
+    find("#challenger").click
 
     expect(current_path).to eq("/challenges")
     expect(page).to have_content("Top 3 Rated Challenges")

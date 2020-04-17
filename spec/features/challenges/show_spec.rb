@@ -34,7 +34,7 @@ RSpec.describe 'User ' do
 
     expect(current_path).to eq("/challenges/#{@jans_breakfast.id}")
 
-    expect(page).to have_content("Basket Size: #{@jans_breakfast.basket_size}")
+    expect(page).to have_content("The Basket Size Was: #{@jans_breakfast.basket_size}")
     expect(page).to have_content(@jans_breakfast.id)
     expect(page).to have_content(@jelly.name)
     expect(page).to have_content(@lemon.name)
@@ -45,7 +45,7 @@ RSpec.describe 'User ' do
 
     expect(current_path).to eq("/challenges/#{@jans_lunch.id}")
 
-    expect(page).to have_content("Basket Size: #{@jans_lunch.basket_size}")
+    expect(page).to have_content("The Basket Size Was: #{@jans_lunch.basket_size}")
     expect(page).to have_content(@jans_lunch.id)
     expect(page).to have_content(@quail_eggs.name)
     expect(page).to have_content(@sprite.name)

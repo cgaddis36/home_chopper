@@ -1,0 +1,19 @@
+<h1>Recipe Search</h1>
+<h2>Enter 1 - 7 Ingredients</h2>
+<h2><%= form_tag :recipes, method: :get do %>
+      <%= label_tag :ingredient_1 %>
+      <%= text_field_tag :ingredient_1 %><br>
+      <%= label_tag :ingredient_2 %>
+      <%= text_field_tag :ingredient_2 %><br>
+      <%= label_tag :ingredient_3 %>
+      <%= text_field_tag :ingredient_3 %><br>
+      <%= label_tag :ingredient_4 %>
+      <%= text_field_tag :ingredient_4 %><br>
+      <%= label_tag :ingredient_5 %>
+      <%= text_field_tag :ingredient_5 %><br>
+      <%= label_tag :ingredient_6 %>
+      <%= text_field_tag :ingredient_6 %><br>
+      <%= label_tag :ingredient_7 %>
+      <%= text_field_tag :ingredient_7 %><br>
+      <%= submit_tag "Find Recipes"  %>
+    <% end %><br></h2>

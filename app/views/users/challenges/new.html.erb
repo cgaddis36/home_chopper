@@ -1,7 +1,8 @@
+
 <h2>New Challenge</h2>
   <%= form_for @challenge, url: "/users/challenges", method: :post do |f| %>
   <%= f.select :time_limit, [['20','20'],['40','40'],['60','60']], {}, :id=>"time_limit" %>
   <%= f.select :basket_size, [['Three Ingredients','3'],['Five Ingredients','5'],['Seven Ingredients','7']], {}, :id=>"basket_size" %>
   <%= f.select :meal_type, [['Breakfast','breakfast'],['Lunch','lunch'],['Dinner','dinner'],['Snack','snack'],['Dessert','dessert']], {}, :id=>"meal_type" %>
-  <%= f.submit "Start New Game"  %>
+  <%= f.submit "Begin New Game"  %>
 <% end %>

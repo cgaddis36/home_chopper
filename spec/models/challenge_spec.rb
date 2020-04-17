@@ -10,6 +10,7 @@ RSpec.describe Challenge, type: :model do
   describe 'relationships' do
     it { should belong_to :user }
     it { should have_many :ratings }
+    it { should have_many :photos }
     it { should have_many :challenge_ingredients }
     it { should have_many(:ingredients).through(:challenge_ingredients) }
   end
@@ -127,24 +128,8 @@ RSpec.describe Challenge, type: :model do
       expect(@game.basket_contents.count).to eq(3)
     end
 
-    it "can change the challenge status to playing" do
-      expect(@game.game_status).to eq("before")
-
-      @game.start_game
-
-      expect(@game.game_status).to eq("playing")
-    end
-
-    it "can change the challenge status to paused" do
-      expect(@game.game_status).to eq("before")
-
-      @game.pause_game
-
-      expect(@game.game_status).to eq("paused")
-    end
-
     it "can change the challenge status to cancelled" do
-      expect(@game.game_status).to eq("before")
+      expect(@game.game_status).to eq("playing")
 
       @game.cancel_game
 
@@ -152,15 +137,7 @@ RSpec.describe Challenge, type: :model do
     end
 
     it "can change the challenge status to complete" do
-      expect(@game.game_status).to eq("before")
-
-      @game.finalize_game
-
-      expect(@game.game_status).to eq("done")
-    end
-
-    it "can change the challenge status to complete" do
-      expect(@game.game_status).to eq("before")
+      expect(@game.game_status).to eq("playing")
 
       @game.game_complete
 
